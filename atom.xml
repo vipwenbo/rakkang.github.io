@@ -4,7 +4,7 @@
   <subtitle><![CDATA[// ruikye's 个人博客]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.ruikye.com/"/>
-  <updated>2014-08-29T11:04:10.798Z</updated>
+  <updated>2014-08-29T16:09:00.043Z</updated>
   <id>http://www.ruikye.com/</id>
   
   <author>
@@ -13,6 +13,74 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hexo 搭建个人博客]]></title>
+    <link href="http://www.ruikye.com/2014/08/29/Hexo-+-Github-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://www.ruikye.com/2014/08/29/Hexo-+-Github-搭建个人博客/</id>
+    <published>2014-08-29T14:35:13.000Z</published>
+    <updated>2014-08-29T16:07:36.000Z</updated>
+    <content type="html"><![CDATA[<p>最近 Github 在 IT 界是火得一踏糊涂，作为一个程序猿没听过 Github 真觉得 Out 了。本身 Github 是一个基于 git 版本控制系统的托管仓库，程序员可以在 Github 上托管代码，设计师可以在 Github 上协同创作等等各种方便。最近 Apple 为 IOS 发布了新的编程语言，北邮的几个学生就在 Github 上发起了协同翻译《The Swift Programming Language》英文版，项目地址：<a href="https://github.com/numbbbbb/the-swift-programming-language-in-chinese" target="_blank" rel="external">中文版 Apple 官方 Swift 教程</a>。</p>
+<p>同时，Github 为了更好的程序员介绍自己的项目，提供了 Pages 功能，Pages 功能就是为每个项目提供一种静态网页的描述方式，很多网友就利用 Pages 功能搭建了自己的个人博客，这篇文章就是介绍如何使用 Hexo 快速的在 Github 上搭建自己的个人博客。</p>
+<blockquote>
+<p>Github 的 Pages 功能是免费的，省去了直接搭建博客的服务器成本；但是也有一定的限制，免费用户空间上线是 300M, 只能建立静态的个人博客，如果要建立动态网站还是用 WordPress 比较靠谱</p>
+</blockquote>
+<p>本来自己搭建了一个基于 WordPress 的博客 <em>(<a href="http://k.awaysoft.com" target="_blank" rel="external">k.awaysoft.com</a>)</em>，由于个人喜欢用 Markdown 写文章，而 WordPress 本身是不支持 Markdown 的，所以每次发布文章各种麻烦，加上 WordPress 越做越臃肿，萌生了换个框架搭建博客的想法。好早听说了 Github 的 Pages 功能可以搭建博客，由于各种原因一直没动手；听朋友介绍 Hexo 不错，遂百度，发现 Hexo 是利用了 Github 的 Pages 功能，于是就有了这个博客的诞生，在搭建博客过程中积累点点经验，不敢独享，分享给大家。</p>
+<h2 id="工具介绍：">工具介绍：</h2>
+<h3 id="1-_Hexo">1. Hexo</h3>
+<p>Hexo 是一个基于 Node.js 的静态博客程序，可以方便的生成静态网页托管在 Github 和 Heroku上。作者是来自台湾的<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">@tommy351</a>。官方介绍：</p>
+<blockquote>
+<p>A fast, simple &amp; powerful blog framework, powered by Node.js.<br>基于 Node.js 的快速、简洁但功能强大的博客框架。</p>
+</blockquote>
+<p>Hexo 在 Gihub 上的主页是：<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">https://github.com/hexojs/hexo</a></p>
+<h3 id="2-_Node-js">2. Node.js</h3>
+<p>由于使用 Hexo 需要依赖 Node.js, 所以对此进行简单的介绍，直接引用百度百科的内容：</p>
+<blockquote>
+<p>Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台，用来方便地搭建快速的易于扩展的网络应用. Node.js 借助事件驱动，非阻塞 I/O 模型变得轻量和高效， 非常适合运行在分布式设备的数据密集型的实时应用. Node.js 对 Google V8 引擎(应用于 Google Chrome 浏览器)进行了封装.</p>
+</blockquote>
+<h3 id="3-_Github">3. Github</h3>
+<p>因为 Hexo 要将网站托管在 Github 上，也简单介绍下：</p>
+<blockquote>
+<p>Gist 是 Github 推出的基于 Git 的代码片段服务。用户可以提交自己的代码片段或任意的文本作，可以作为个人的代码管理库、文档管理库等。</p>
+</blockquote>
+<p>如果没有用过 Github, 先到 <a href="http://www.github.com" target="_blank" rel="external">http://www.github.com</a> 上去注册一个账户，托管博客要用到。</p>
+<h3 id="4-_Git">4. Git</h3>
+<p>Github 是 Git 的托管仓库，虽然用不到 Git 命令，但是 Hexo 也是依赖 Git 的。</p>
+<blockquote>
+<p>Git是一个开源的分布式版本控制系统，用以有效、高速的处理从很小到非常大的项目版本管理。[4]<br>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。<br>Torvalds 开始着手开发 Git 是为了作为一种过渡方案来替代 BitKeeper，后者之前一直是 Linux 内核开发人员在全球使用的主要源代码工具。</p>
+</blockquote>
+<p>如果使用 Windows 的童鞋，还请先到 <a href="http://git-scm.com/" target="_blank" rel="external">http://git-scm.com/</a> 下载 Git 客户端，Mac 本身自带 git, 用 Linux 的童鞋应该是比较专业的，就不介绍了。</p>
+<h2 id="搭建博客：">搭建博客：</h2>
+<p>在使用 Hexo 之前，请先安装 Node.js 以及 Git，Node.js 和 Git 都有安装包，可以到官网去下载：</p>
+<blockquote>
+<p>Node.js 官网：<a href="http://www.nodejs.org/" target="_blank" rel="external">http://www.nodejs.org/</a><br>Git 官网：<a href="http://git-scm.com" target="_blank" rel="external">http://git-scm.com</a></p>
+</blockquote>
+<p>另外说明下：因为手头只有一台 Mac，所以下面使用的命令都是在 Mac 终端的，如果使用 Windows 的话，Git 有个 <em>Git Bash</em> 的程序，是一个模拟的终端，可以执行一些命令。</p>
+<h3 id="1-_安装_Hexo">1. 安装 Hexo</h3>
+<p><strong>前提：必须先安装 Node.js！</strong> 打开终端，执行命令：</p>
+<figure class="highlight shell"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> hexo -g</span></div></pre></figure>
+
+<p>Hexo 安装成功之后，在任意目录新建一个子目录并切换到这个目录，这就是本地的博客目录：</p>
+<figure class="highlight shell"><pre><div class="line"><span class="keyword">cd</span> ~</div><div class="line"><span class="built_in">mkdir</span> MyBlog</div><div class="line"><span class="keyword">cd</span> MyBlog</div></pre></figure>
+
+<p>初始化本地博客目录：</p>
+<figure class="highlight shell"><pre><div class="line">hexo <span class="keyword">init</span></div><div class="line">npm install</div></pre></figure>
+
+<p>至此，本地的博客就搭建好了，是不是超简单 ^_^！<br>如果要本地查看博客，继续执行下面的命令：</p>
+<figure class="highlight shell"><pre><div class="line">hexo <span class="keyword">server</span>   <span class="comment">// 启动本地服务器</span></div></pre></figure>
+
+<p>然后打开浏览器，在地址栏输入：localhost:4000，你就可以喉嗨尚的看到你的博客了～～～</p>
+<blockquote>
+<p>按下快捷键：<code>CTRL + D</code> 可以退出本地服务器</p>
+</blockquote>
+]]></content>
+    
+    
+      <category term="Hexo" scheme="http://www.ruikye.com/tags/Hexo/"/>
+    
+      <category term="Hexo" scheme="http://www.ruikye.com/categories/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Java 单例模式]]></title>

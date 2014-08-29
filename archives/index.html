@@ -65,11 +65,11 @@
       
       
         <div class="icon"></div>
-        <time datetime="2014-08-28T14:55:07.000Z"><a href="/2014/08/28/Java-单例模式/">8月 28 2014</a></time>
+        <time datetime="2014-08-29T14:35:13.000Z"><a href="/2014/08/29/Hexo-+-Github-搭建个人博客/">8月 29 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/28/Java-单例模式/">Java 单例模式</a></h1>
+    <h1 class="title"><a href="/2014/08/29/Hexo-+-Github-搭建个人博客/">Hexo 搭建个人博客</a></h1>
   
 
 
@@ -77,40 +77,59 @@
     <div class="entry">
       
         
-        <ol>
-<li>私有化构造函数（饿汉模式）：    </li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span> </span>{</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Singleton1 sIntance = <span class="keyword">new</span> Singleton1();</div><div class="line"> </div><div class="line">  <span class="keyword">private</span> <span class="title">Singleton1</span>(){</div><div class="line">   }</div><div class="line"> </div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span>(){</div><div class="line">      <span class="keyword">return</span> sIntance;</div><div class="line">   }</div><div class="line">}</div></pre></figure>
+        <p>最近 Github 在 IT 界是火得一踏糊涂，作为一个程序猿没听过 Github 真觉得 Out 了。本身 Github 是一个基于 git 版本控制系统的托管仓库，程序员可以在 Github 上托管代码，设计师可以在 Github 上协同创作等等各种方便。最近 Apple 为 IOS 发布了新的编程语言，北邮的几个学生就在 Github 上发起了协同翻译《The Swift Programming Language》英文版，项目地址：<a href="https://github.com/numbbbbb/the-swift-programming-language-in-chinese" target="_blank" rel="external">中文版 Apple 官方 Swift 教程</a>。</p>
+<p>同时，Github 为了更好的程序员介绍自己的项目，提供了 Pages 功能，Pages 功能就是为每个项目提供一种静态网页的描述方式，很多网友就利用 Pages 功能搭建了自己的个人博客，这篇文章就是介绍如何使用 Hexo 快速的在 Github 上搭建自己的个人博客。</p>
+<blockquote>
+<p>Github 的 Pages 功能是免费的，省去了直接搭建博客的服务器成本；但是也有一定的限制，免费用户空间上线是 300M, 只能建立静态的个人博客，如果要建立动态网站还是用 WordPress 比较靠谱</p>
+</blockquote>
+<p>本来自己搭建了一个基于 WordPress 的博客 <em>(<a href="http://k.awaysoft.com" target="_blank" rel="external">k.awaysoft.com</a>)</em>，由于个人喜欢用 Markdown 写文章，而 WordPress 本身是不支持 Markdown 的，所以每次发布文章各种麻烦，加上 WordPress 越做越臃肿，萌生了换个框架搭建博客的想法。好早听说了 Github 的 Pages 功能可以搭建博客，由于各种原因一直没动手；听朋友介绍 Hexo 不错，遂百度，发现 Hexo 是利用了 Github 的 Pages 功能，于是就有了这个博客的诞生，在搭建博客过程中积累点点经验，不敢独享，分享给大家。</p>
+<h2 id="工具介绍：">工具介绍：</h2>
+<h3 id="1-_Hexo">1. Hexo</h3>
+<p>Hexo 是一个基于 Node.js 的静态博客程序，可以方便的生成静态网页托管在 Github 和 Heroku上。作者是来自台湾的<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">@tommy351</a>。官方介绍：</p>
+<blockquote>
+<p>A fast, simple &amp; powerful blog framework, powered by Node.js.<br>基于 Node.js 的快速、简洁但功能强大的博客框架。</p>
+</blockquote>
+<p>Hexo 在 Gihub 上的主页是：<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">https://github.com/hexojs/hexo</a></p>
+<h3 id="2-_Node-js">2. Node.js</h3>
+<p>由于使用 Hexo 需要依赖 Node.js, 所以对此进行简单的介绍，直接引用百度百科的内容：</p>
+<blockquote>
+<p>Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台，用来方便地搭建快速的易于扩展的网络应用. Node.js 借助事件驱动，非阻塞 I/O 模型变得轻量和高效， 非常适合运行在分布式设备的数据密集型的实时应用. Node.js 对 Google V8 引擎(应用于 Google Chrome 浏览器)进行了封装.</p>
+</blockquote>
+<h3 id="3-_Github">3. Github</h3>
+<p>因为 Hexo 要将网站托管在 Github 上，也简单介绍下：</p>
+<blockquote>
+<p>Gist 是 Github 推出的基于 Git 的代码片段服务。用户可以提交自己的代码片段或任意的文本作，可以作为个人的代码管理库、文档管理库等。</p>
+</blockquote>
+<p>如果没有用过 Github, 先到 <a href="http://www.github.com" target="_blank" rel="external">http://www.github.com</a> 上去注册一个账户，托管博客要用到。</p>
+<h3 id="4-_Git">4. Git</h3>
+<p>Github 是 Git 的托管仓库，虽然用不到 Git 命令，但是 Hexo 也是依赖 Git 的。</p>
+<blockquote>
+<p>Git是一个开源的分布式版本控制系统，用以有效、高速的处理从很小到非常大的项目版本管理。[4]<br>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。<br>Torvalds 开始着手开发 Git 是为了作为一种过渡方案来替代 BitKeeper，后者之前一直是 Linux 内核开发人员在全球使用的主要源代码工具。</p>
+</blockquote>
+<p>如果使用 Windows 的童鞋，还请先到 <a href="http://git-scm.com/" target="_blank" rel="external">http://git-scm.com/</a> 下载 Git 客户端，Mac 本身自带 git, 用 Linux 的童鞋应该是比较专业的，就不介绍了。</p>
+<h2 id="搭建博客：">搭建博客：</h2>
+<p>在使用 Hexo 之前，请先安装 Node.js 以及 Git，Node.js 和 Git 都有安装包，可以到官网去下载：</p>
+<blockquote>
+<p>Node.js 官网：<a href="http://www.nodejs.org/" target="_blank" rel="external">http://www.nodejs.org/</a><br>Git 官网：<a href="http://git-scm.com" target="_blank" rel="external">http://git-scm.com</a></p>
+</blockquote>
+<p>另外说明下：因为手头只有一台 Mac，所以下面使用的命令都是在 Mac 终端的，如果使用 Windows 的话，Git 有个 <em>Git Bash</em> 的程序，是一个模拟的终端，可以执行一些命令。</p>
+<h3 id="1-_安装_Hexo">1. 安装 Hexo</h3>
+<p><strong>前提：必须先安装 Node.js！</strong> 打开终端，执行命令：</p>
+<figure class="highlight shell"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> hexo -g</span></div></pre></figure>
 
-<ol>
-<li>私有化构造函数，并提供静态获获取实例方法（懒汉模式）：</li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton sInstance;</div><div class="line"> </div><div class="line">    <span class="keyword">private</span> <span class="title">Singleton</span>() {</div><div class="line">     }</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>(){</div><div class="line">        <span class="keyword">if</span>(sInstance == <span class="keyword">null</span>){</div><div class="line">             sInstance = <span class="keyword">new</span> Singleton();</div><div class="line">         }</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> sInstance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
+<p>Hexo 安装成功之后，在任意目录新建一个子目录并切换到这个目录，这就是本地的博客目录：</p>
+<figure class="highlight shell"><pre><div class="line"><span class="keyword">cd</span> ~</div><div class="line"><span class="built_in">mkdir</span> MyBlog</div><div class="line"><span class="keyword">cd</span> MyBlog</div></pre></figure>
 
-<ol>
-<li><p>单元素 Enum 类型实现单列（强烈推荐）：</p>
-<p>参考：《Effective Java》, 推荐使用该方法，理由如下：</p>
-<ul>
-<li>绝对的局唯一，可以序列化</li>
-<li>绝对的预防反射攻击</li>
-<li>绝对的简洁</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton {</div><div class="line">    INSTANCE;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomthing</span>(){</div><div class="line">        Log.d(<span class="string">"Sigleton"</span> , <span class="string">"This is a single instace!"</span> );</div><div class="line">     }</div><div class="line">}</div></pre></figure>
+<p>初始化本地博客目录：</p>
+<figure class="highlight shell"><pre><div class="line">hexo <span class="keyword">init</span></div><div class="line">npm install</div></pre></figure>
 
-<ol>
-<li><p>利用 JVM 类加载机制（多线程）：  </p>
-<p>我们知道 JVM 加载类时只会加载一次，可以利用此特性实现单例。优点：</p>
-<ul>
-<li>可以多线程使用</li>
-<li>绝对唯一</li>
-<li>不调用 getInstance 不会实例化</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">     <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Holder</span> </span>{</div><div class="line">         <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">private</span> <span class="title">Singleton</span>(){</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() {</div><div class="line">         <span class="keyword">return</span> Holder. instance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
+<p>至此，本地的博客就搭建好了，是不是超简单 ^_^！<br>如果要本地查看博客，继续执行下面的命令：</p>
+<figure class="highlight shell"><pre><div class="line">hexo <span class="keyword">server</span>   <span class="comment">// 启动本地服务器</span></div></pre></figure>
 
+<p>然后打开浏览器，在地址栏输入：localhost:4000，你就可以喉嗨尚的看到你的博客了～～～</p>
+<blockquote>
+<p>按下快捷键：<code>CTRL + D</code> 可以退出本地服务器</p>
+</blockquote>
 
       
     </div>
@@ -118,13 +137,13 @@
       
   
   <div class="categories">
-    <a href="/categories/Java/">Java</a>
+    <a href="/categories/Hexo/">Hexo</a>
   </div>
 
       
   
   <div class="tags">
-    <a href="/tags/Java/">Java</a>
+    <a href="/tags/Hexo/">Hexo</a>
   </div>
 
         <div class="alignright">
@@ -166,6 +185,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2014/08/29/Hexo-+-Github-搭建个人博客/">Hexo 搭建个人博客</a>
+      </li>
+    
+      <li>
         <a href="/2014/08/28/Java-单例模式/">Java 单例模式</a>
       </li>
     
@@ -184,6 +207,8 @@
   
     <li><a href="/categories/Android/">Android</a><small>1</small></li>
   
+    <li><a href="/categories/Hexo/">Hexo</a><small>1</small></li>
+  
     <li><a href="/categories/Java/">Java</a><small>1</small></li>
   
   </ul>
@@ -194,7 +219,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Android/" style="font-size: NaNpx;">Android</a><a href="/tags/Java/" style="font-size: NaNpx;">Java</a>
+    <a href="/tags/Android/" style="font-size: 20.00px;">Android</a><a href="/tags/Github/" style="font-size: 10.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/tags/Hexo-Github/" style="font-size: 10.00px;">Hexo Github</a><a href="/tags/Hexo,-Github/" style="font-size: 10.00px;">Hexo, Github</a><a href="/tags/Java/" style="font-size: 20.00px;">Java</a>
   </div>
 </div>
 
