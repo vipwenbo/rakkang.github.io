@@ -454,7 +454,7 @@ article .entry h6 {
 }
 article .entry img,
 article .entry video {
-  width: 100%;
+  width: 360px;
   height: auto;
   border: 1px solid #e4e4e4;
   padding: 1px;

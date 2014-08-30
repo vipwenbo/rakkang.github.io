@@ -3,17 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Java 单例模式 | Ruikye</title>
+  <title>第 2 页 | Software | Ruikye</title>
   <meta name="author" content="零雨の夜">
-  
-  <meta name="description" content="私有化构造函数（饿汉模式）：    
-
-public class Singleton1 {  private static Singleton1 sIntance = new Singleton1();   private Singleton1(){   }   public static Sing">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Java 单例模式"/>
+  
   <meta property="og:site_name" content="Ruikye"/>
 
   
@@ -55,18 +51,23 @@ public class Singleton1 {  private static Singleton1 sIntance = new Singleton1()
   <div class="clearfix"></div>
 </div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">Software</h2>
+
+
+  
+    <article class="post">
   
   <div class="post-content">
     <header>
       
       
         <div class="icon"></div>
-        <time datetime="2014-08-28T14:55:07.000Z"><a href="/2014/08/28/Java-单例模式/">8月 28 2014</a></time>
+        <time datetime="2014-08-30T08:14:20.000Z"><a href="/2014/08/30/SublimeText-Plugins/">8月 30 2014</a></time>
       
       
   
-    <h1 class="title">Java 单例模式</h1>
+    <h1 class="title"><a href="/2014/08/30/SublimeText-Plugins/">Sublime Text 推荐插件</a></h1>
   
 
 
@@ -74,42 +75,56 @@ public class Singleton1 {  private static Singleton1 sIntance = new Singleton1()
     <div class="entry">
       
         
-          
-        
-        <ol>
-<li>私有化构造函数（饿汉模式）：    </li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span> </span>{</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Singleton1 sIntance = <span class="keyword">new</span> Singleton1();</div><div class="line"> </div><div class="line">  <span class="keyword">private</span> <span class="title">Singleton1</span>(){</div><div class="line">   }</div><div class="line"> </div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span>(){</div><div class="line">      <span class="keyword">return</span> sIntance;</div><div class="line">   }</div><div class="line">}</div></pre></figure>
-
+        <blockquote>
+<p>Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用），也是HTML和散文先进的文本编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。—- 百度百科</p>
+</blockquote>
+<h4 id="1-_Package_Control">1. <a href="https://github.com/wbond/sublime_package_control" target="_blank" rel="external">Package Control</a></h4>
+<p>Package Control 是 Sublime Text 管理其他插件的工具，可以实现在线安装、删除插件等功能。</p>
+<p>安装方法，打开 Sublime Text，按快捷键 <code>CTRL+反引号</code> 调出控制台(<em>Console</em>), 输入以下代码 ：</p>
+<pre><code>Sublime <span class="built_in">Text</span> <span class="number">2</span> 安装代码：
+</code></pre><blockquote>
+<p>mport urllib2,os; pf=’Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), ‘wb’ ).write( urllib2.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ +pf.replace( ‘ ‘,’%20’ )).read()); print( ‘Please restart Sublime Text to finish installation’)</p>
+</blockquote>
+<pre><code>Sublime <span class="built_in">Text</span> <span class="number">3</span> 安装代码：
+</code></pre><blockquote>
+<p>import urllib.request,os; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), ‘wb’).write(urllib.request.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ + pf.replace(‘ ‘,’%20’)).read())</p>
+</blockquote>
+<pre><code>手动安装
+</code></pre><blockquote>
+<p>可能由于各种原因，无法使用代码安装，那可以通过以下步骤手动安装Package Control：</p>
 <ol>
-<li>私有化构造函数，并提供静态获获取实例方法（懒汉模式）：</li>
+<li>点击Preferences &gt; Browse Packages菜单<ol>
+<li>进入打开的目录的上层目录，然后再进入Installed Packages/目录</li>
+<li>下载Package Control.sublime-package并复制到Installed Packages/目录</li>
+<li>重启Sublime Text。</li>
 </ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton sInstance;</div><div class="line"> </div><div class="line">    <span class="keyword">private</span> <span class="title">Singleton</span>() {</div><div class="line">     }</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>(){</div><div class="line">        <span class="keyword">if</span>(sInstance == <span class="keyword">null</span>){</div><div class="line">             sInstance = <span class="keyword">new</span> Singleton();</div><div class="line">         }</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> sInstance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
-
-<ol>
-<li><p>单元素 Enum 类型实现单列（强烈推荐）：</p>
-<p>参考：《Effective Java》, 推荐使用该方法，理由如下：</p>
-<ul>
-<li>绝对的局唯一，可以序列化</li>
-<li>绝对的预防反射攻击</li>
-<li>绝对的简洁</li>
-</ul>
 </li>
 </ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton {</div><div class="line">    INSTANCE;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomthing</span>(){</div><div class="line">        Log.d(<span class="string">"Sigleton"</span> , <span class="string">"This is a single instace!"</span> );</div><div class="line">     }</div><div class="line">}</div></pre></figure>
-
-<ol>
-<li><p>利用 JVM 类加载机制（多线程）：  </p>
-<p>我们知道 JVM 加载类时只会加载一次，可以利用此特性实现单例。优点：</p>
-<ul>
-<li>可以多线程使用</li>
-<li>绝对唯一</li>
-<li>不调用 getInstance 不会实例化</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">     <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Holder</span> </span>{</div><div class="line">         <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">private</span> <span class="title">Singleton</span>(){</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() {</div><div class="line">         <span class="keyword">return</span> Holder. instance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
-
+</blockquote>
+<p> 安装完成后，可以使用<code>CTRL(CMD)+SHIFT+P</code>快捷键打开控制面板，输入: <em>package control</em> 。</p>
+<h4 id="2-_SideBarEnhancements">2. <a href="https://github.com/titoBouzout/SideBarEnhancements" target="_blank" rel="external">SideBarEnhancements</a></h4>
+<p>直接使用 Package Control 安装，SideBarEnhancements是 Sublime Text中强大的 Sidebar 插件，Sublime Text 本身的 Sidebar 提供的右键菜单非常简陋，有 SideBarEnhancements 之后，可以实现很多使用的功能，比如：在文件浏览器中打开文件等。</p>
+<h4 id="3-_ConvertToUTF8">3. <a href="https://github.com/seanliang/ConvertToUTF8" target="_blank" rel="external">ConvertToUTF8</a></h4>
+<p>直接使用 Package Control 安装。Sublime Text 本对中文支持不太好，如果直接打开 GBK 编码格式的文件会出现乱码的情况，ConvertToUTF8 可以将 GBK 等其他的编码文件转换为 UTF8 显示，解决中文乱码问题。</p>
+<blockquote>
+<p>通过本插件，您可以编辑并保存目前编码不被 Sublime Text 支持的文件，特别是中日韩用户使用的 GB2312，GBK，BIG5，EUC-KR，EUC-JP 等。ConvertToUTF8 同时支持 Sublime Text 2 和 3。 ——- ConvertToUTF8 官方介绍</p>
+</blockquote>
+<h4 id="4-_JsFormat">4. <a href="https://github.com/jdc0589/JsFormat" target="_blank" rel="external">JsFormat</a></h4>
+<p>直接使用 Package Control 安装。JsFormat 顾名思义，是一个可以格式化 JavaScript 代码的插件（也可以格式化Json），格式化是文件名必须保存问 *.js 或 *.json, 这样插件才能识别出代码。</p>
+<h4 id="5-_Markdown_Preview">5. <a href="https://github.com/revolunet/sublimetext-markdown-preview" target="_blank" rel="external">Markdown Preview</a></h4>
+<p>直接使用 Package Control 安装。Markdown Preview 是一个支持 Markdown 标记语言的插件，Sublime Text 本身是支持 Markdown 的，但是显示不太美观。同时， Markdown Preview 还支持导出 HTML 或者在浏览器中打开预览。</p>
+<p>使用方法：</p>
+<blockquote>
+<p>打开控制面板（<code>CTRL+SHIFT+P</code>），输入: <em>markdown preview</em> 就可看到相关的命令了。</p>
+</blockquote>
+<h4 id="6-_MarkdownEditing">6. <a href="https://github.com/SublimeText-Markdown/MarkdownEditing" target="_blank" rel="external">MarkdownEditing</a></h4>
+<p>直接使用 Package Control 安装。MardownEditing 是一款功能更加强大的 Markdown 插件。最大的特色是支持 <a href="https://help.github.com/articles/github-flavored-markdown" target="_blank" rel="external">GFM</a> ( GitHub flavored Markdown) 代码高亮。</p>
+<blockquote>
+<p>Markdown plugin for Sublime Text. Provides a decent Markdown color scheme (light and dark) with more robust syntax highlighting and useful Markdown editing features for Sublime Text. 3 flavors are supported: Standard Markdown, GitHub flavored Markdown, MultiMarkdown. </p>
+</blockquote>
+<h4 id="7-_Spacegray">7. <a href="https://github.com/kkga/spacegray" target="_blank" rel="external">Spacegray</a></h4>
+<p>直接使用 Package Control 安装。Spacegray 是一款高大上的 Sublime Text 主题。有 Ocean Dark、 Ocean Light 和 Eighties Dark 三中主题。</p>
+<p>其他的插件还有：<a href="https://github.com/SublimeText/Tag" target="_blank" rel="external">Tag</a>, <a href="https://github.com/condemil/Gist" target="_blank" rel="external">Gist</a>, <a href="https://github.com/wbond/sublime_alignment" target="_blank" rel="external">Alignment</a>, <a href="https://github.com/alienhard/SublimeAllAutocomplete" target="_blank" rel="external">All AutoComplete</a> 等等…</p>
 
       
     </div>
@@ -117,13 +132,13 @@ public class Singleton1 {  private static Singleton1 sIntance = new Singleton1()
       
   
   <div class="categories">
-    <a href="/categories/Java/">Java</a>
+    <a href="/categories/Software/">Software</a>
   </div>
 
       
   
   <div class="tags">
-    <a href="/tags/Java/">Java</a>
+    <a href="/tags/Sublime-Text/">Sublime Text</a>
   </div>
 
         <div class="alignright">
@@ -139,7 +154,15 @@ public class Singleton1 {  private static Singleton1 sIntance = new Singleton1()
 
 
 
-        <div class="ds-thread" data-thread-key="2014/08/28/Java-单例模式/"></div>
+  
+
+  <nav id="pagination">
+  
+    <a href="/categories/Software/" class="alignleft prev">上一页</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
