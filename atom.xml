@@ -4,7 +4,7 @@
   <subtitle><![CDATA[// ruikye's 个人博客]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.ruikye.com/"/>
-  <updated>2014-08-30T04:06:12.226Z</updated>
+  <updated>2014-08-30T05:05:09.411Z</updated>
   <id>http://www.ruikye.com/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Hexo 搭建个人博客]]></title>
+    <title><![CDATA[Hexo 搭建个人博客 · 基础篇]]></title>
     <link href="http://www.ruikye.com/2014/08/29/Hexo-+-Github-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://www.ruikye.com/2014/08/29/Hexo-+-Github-搭建个人博客/</id>
     <published>2014-08-29T14:35:13.000Z</published>
-    <updated>2014-08-30T03:56:22.000Z</updated>
+    <updated>2014-08-30T05:04:09.000Z</updated>
     <content type="html"><![CDATA[<p>最近 Github 在 IT 界是火得一踏糊涂，作为一个程序猿没听过 Github 真觉得 Out 了。本身 Github 是一个基于 git 版本控制系统的托管仓库，程序员可以在 Github 上托管代码，设计师可以在 Github 上协同创作等等各种方便。最近 Apple 为 IOS 发布了新的编程语言，北邮的几个学生就在 Github 上发起了协同翻译《The Swift Programming Language》英文版，项目地址：<a href="https://github.com/numbbbbb/the-swift-programming-language-in-chinese" target="_blank" rel="external">中文版 Apple 官方 Swift 教程</a>。</p>
 <p>同时，Github 为了更好的程序员介绍自己的项目，提供了 Pages 功能，Pages 功能就是为每个项目提供一种静态网页的描述方式，很多网友就利用 Pages 功能搭建了自己的个人博客，这篇文章就是介绍如何使用 Hexo 快速的在 Github 上搭建自己的个人博客。</p>
 <blockquote>
@@ -107,6 +107,23 @@
 <figure class="highlight"><pre><div class="line"><span class="keyword">To</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git</span></div><div class="line">   a796df0..<span class="number">4</span>d4cb79  master -&gt; master</div><div class="line">Branch master <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch master <span class="keyword">from</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git.</span></div><div class="line">[info] Deploy done: github</div></pre></figure>
 
 <p>部署后，在浏览器地址输入：<code>USERNAME</code>.github.io <em>(eg: <a href="http://rakkang.github.io" target="_blank" rel="external">rakkang.github.io</a>)</em> 就可以打开线上的博客了，至此部署完成。</p>
+<h2 id="写博客、发布文章">写博客、发布文章</h2>
+<p>新建一篇博客，执行下面的命令：</p>
+<figure class="highlight shell"><pre><div class="line">$ hexo <span class="built_in">new</span> <span class="built_in">post</span> <span class="string">"article title"</span></div></pre></figure>
+
+<p>这条命令会在你的博客目录的 source/_posts 下生成一个 article-title.md 的文件，用编辑器打开就可以编辑文章了。</p>
+<blockquote>
+<p>Hexo 使用的 Markdown 语法，这里推荐几种编写 Markdown 的编辑器：<br>Window: <a href="http://www.markdownpad.com/" target="_blank" rel="external">MarkdownPad2</a><br>Mac: <a href="http://www.mouapp.com/" target="_blank" rel="external">Mou</a><br>Linux: <a href="http://sourceforge.net/p/retext/home/ReText/" target="_blank" rel="external">ReText</a><br>个人推荐的方式是：Sublime Text + MarkdownEditting(插件)</p>
+</blockquote>
+<p>文章编辑好之后，运行生成、部署命令：</p>
+<figure class="highlight shell"><pre><div class="line">$ hexo g   <span class="comment">// 生成</span></div><div class="line">$ hexo d   <span class="comment">// 部署</span></div></pre></figure>
+
+<p>在浏览器中刷新博客，就可以看到，由于 Github 的缓存机制，可能要多刷新几次才能看到。</p>
+<blockquote>
+<p>如果要删除文章，直接删除 srouce/_post 下对应文章的文件夹，然后重新 <code>生成</code>、<code>部署</code> 就可以了。</p>
+</blockquote>
+<h2 id="参考：">参考：</h2>
+<p>【1】：<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">https://github.com/hexojs/hexo</a><br>【2】：<a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">http://zipperary.com/categories/hexo/</a></p>
 ]]></content>
     
     

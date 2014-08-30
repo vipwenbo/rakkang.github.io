@@ -63,7 +63,7 @@
       
       
   
-    <h1 class="title"><a href="/2014/08/29/Hexo-+-Github-搭建个人博客/">Hexo 搭建个人博客</a></h1>
+    <h1 class="title"><a href="/2014/08/29/Hexo-+-Github-搭建个人博客/">Hexo 搭建个人博客 · 基础篇</a></h1>
   
 
 
@@ -158,6 +158,23 @@
 <figure class="highlight"><pre><div class="line"><span class="keyword">To</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git</span></div><div class="line">   a796df0..<span class="number">4</span>d4cb79  master -&gt; master</div><div class="line">Branch master <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch master <span class="keyword">from</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git.</span></div><div class="line">[info] Deploy done: github</div></pre></figure>
 
 <p>部署后，在浏览器地址输入：<code>USERNAME</code>.github.io <em>(eg: <a href="http://rakkang.github.io" target="_blank" rel="external">rakkang.github.io</a>)</em> 就可以打开线上的博客了，至此部署完成。</p>
+<h2 id="写博客、发布文章">写博客、发布文章</h2>
+<p>新建一篇博客，执行下面的命令：</p>
+<figure class="highlight shell"><pre><div class="line">$ hexo <span class="built_in">new</span> <span class="built_in">post</span> <span class="string">"article title"</span></div></pre></figure>
+
+<p>这条命令会在你的博客目录的 source/_posts 下生成一个 article-title.md 的文件，用编辑器打开就可以编辑文章了。</p>
+<blockquote>
+<p>Hexo 使用的 Markdown 语法，这里推荐几种编写 Markdown 的编辑器：<br>Window: <a href="http://www.markdownpad.com/" target="_blank" rel="external">MarkdownPad2</a><br>Mac: <a href="http://www.mouapp.com/" target="_blank" rel="external">Mou</a><br>Linux: <a href="http://sourceforge.net/p/retext/home/ReText/" target="_blank" rel="external">ReText</a><br>个人推荐的方式是：Sublime Text + MarkdownEditting(插件)</p>
+</blockquote>
+<p>文章编辑好之后，运行生成、部署命令：</p>
+<figure class="highlight shell"><pre><div class="line">$ hexo g   <span class="comment">// 生成</span></div><div class="line">$ hexo d   <span class="comment">// 部署</span></div></pre></figure>
+
+<p>在浏览器中刷新博客，就可以看到，由于 Github 的缓存机制，可能要多刷新几次才能看到。</p>
+<blockquote>
+<p>如果要删除文章，直接删除 srouce/_post 下对应文章的文件夹，然后重新 <code>生成</code>、<code>部署</code> 就可以了。</p>
+</blockquote>
+<h2 id="参考：">参考：</h2>
+<p>【1】：<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">https://github.com/hexojs/hexo</a><br>【2】：<a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">http://zipperary.com/categories/hexo/</a></p>
 
       
     </div>
@@ -212,7 +229,7 @@
   <ul class="entry">
     
       <li>
-        <a href="/2014/08/29/Hexo-+-Github-搭建个人博客/">Hexo 搭建个人博客</a>
+        <a href="/2014/08/29/Hexo-+-Github-搭建个人博客/">Hexo 搭建个人博客 · 基础篇</a>
       </li>
     
       <li>
@@ -264,7 +281,7 @@
 </div>
 <div>
   
-    &copy; 2014 零雨の夜 &nbsp;|&nbsp; 
+  &copy; 2014 零雨の夜 , Themes <a href="https://github.com/DaiXiang/hexo-theme-BsLight">BsLight</a>&nbsp;|&nbsp; 
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253165997'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1253165997' type='text/javascript'%3E%3C/script%3E"));</script>
 
   
