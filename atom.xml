@@ -4,7 +4,7 @@
   <subtitle><![CDATA[// ruikye's 个人博客]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.ruikye.com/"/>
-  <updated>2014-08-30T09:43:45.873Z</updated>
+  <updated>2014-08-30T09:46:47.063Z</updated>
   <id>http://www.ruikye.com/</id>
   
   <author>
@@ -199,8 +199,8 @@
     <link href="http://www.ruikye.com/2014/08/30/github-gist/"/>
     <id>http://www.ruikye.com/2014/08/30/github-gist/</id>
     <published>2014-08-30T08:23:07.000Z</published>
-    <updated>2014-08-30T09:17:10.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 是 <a href="https://github.com" target="_blank" rel="external">Github</a> 推出的基于 Git 的代码片段服务。用户可以提交自己的代码片段或任意的文本作，可以作为个人的代码管理库、文档管理库等。同时 <a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 页面提供访问的 <a href="http://www.baidu.com/s?wd=javascript" target="_blank" rel="external">JavaScript</a> 片段用于嵌入其他网站，如：个人博客等。</p>
+    <updated>2014-08-30T09:46:41.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 是 <a href="https://github.com" target="_blank" rel="external">Github</a> 推出的基于 Git 的代码片段管理服务。用户可以提交自己的代码片段或任意的文本，可以作为个人的代码管理库、文档管理库等。同时 <a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 页面提供访问的 <a href="http://www.baidu.com/s?wd=javascript" target="_blank" rel="external">JavaScript</a> 片段用于嵌入其他网站，如：个人博客等。</p>
 <blockquote>
 <p>但是很多站点粘贴 JavaScript 无效，这时候你可以在 Gist URL 后附加.pibb，得到一个纯 HTML 的版本，然后就可以复制粘贴 HTML 源码到其他网站了。例如: <a href="https://gist.github.com/tiimgreen/10545817.pibb" target="_blank" rel="external">https://gist.github.com/tiimgreen/10545817.pibb</a></p>
 </blockquote>
