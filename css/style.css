@@ -227,8 +227,7 @@ article .gallery:hover .control {
   filter: none;
 }
 article .gallery img {
-  min-width: 100%;
-  max-width: 100%;
+  width: 320px;
   height: auto;
   position: absolute;
   top: 0;

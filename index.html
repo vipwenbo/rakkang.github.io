@@ -109,21 +109,51 @@
 <p>另外说明下：因为手头只有一台 Mac，所以下面使用的命令都是在 Mac 终端的，如果使用 Windows 的话，Git 有个 <em>Git Bash</em> 的程序，是一个模拟的终端，可以执行一些命令。</p>
 <h3 id="1-_安装_Hexo">1. 安装 Hexo</h3>
 <p><strong>前提：必须先安装 Node.js！</strong> 打开终端，执行命令：</p>
-<figure class="highlight shell"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> hexo -g</span></div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="variable">$ </span>npm install hexo -g</div></pre></figure>
 
 <p>Hexo 安装成功之后，在任意目录新建一个子目录并切换到这个目录，这就是本地的博客目录：</p>
-<figure class="highlight shell"><pre><div class="line"><span class="keyword">cd</span> ~</div><div class="line"><span class="built_in">mkdir</span> MyBlog</div><div class="line"><span class="keyword">cd</span> MyBlog</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line">$ <span class="keyword">cd</span> ~</div><div class="line">$ <span class="built_in">mkdir</span> MyBlog</div><div class="line">$ <span class="keyword">cd</span> MyBlog</div></pre></figure>
 
 <p>初始化本地博客目录：</p>
-<figure class="highlight shell"><pre><div class="line">hexo <span class="keyword">init</span></div><div class="line">npm install</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="variable">$ </span>hexo init</div><div class="line"><span class="variable">$ </span>npm install</div></pre></figure>
 
 <p>至此，本地的博客就搭建好了，是不是超简单 ^_^！<br>如果要本地查看博客，继续执行下面的命令：</p>
-<figure class="highlight shell"><pre><div class="line">hexo <span class="keyword">server</span>   <span class="comment">// 启动本地服务器</span></div></pre></figure>
+<figure class="highlight shell"><pre><div class="line">$ hexo <span class="keyword">server</span>   <span class="comment">// 启动本地服务器</span></div></pre></figure>
 
 <p>然后打开浏览器，在地址栏输入：localhost:4000，你就可以喉嗨尚的看到你的博客了～～～</p>
 <blockquote>
 <p>按下快捷键：<code>CTRL + D</code> 可以退出本地服务器</p>
 </blockquote>
+<h2 id="托管博客到_Github">托管博客到 Github</h2>
+<p>尽管在本来浏览器中可已访问自己的博客了，但这仅仅只是一个单机版。如果要在整个互联网上发布直接的博客，需要有服务器托管，下面介绍如果托管直接的 Hexo 博客到 Github 上。</p>
+<p><strong>前提：需在 <a href="http://www.github.com" target="_blank" rel="external">Github</a> 上注册</strong>！</p>
+<p>登录 Github，创建已仓库(repositories), 名字为：<code>USERNAME</code>.github.io，如图：</p>
+<p><img src="/img/github_create.png" alt="github_create"></p>
+<p>仓库创建好之后，可以查看；如上图 <code>Your repositories</code> 对应的列表中点击 <em>rakkang.github.io</em> 可以打开仓库主页。要上传项目到仓库，还要在 Github 的 <code>Settings</code> 中添加自己的 SSH Key。</p>
+<p><img src="/img/github_sshkey.png" alt="github_sshkey"></p>
+<p>Github 仓库建好，设置项配置好之后，打开终端，进入博客目录：</p>
+<figure class="highlight shell"><pre><div class="line">$ <span class="built_in">cd</span> ~/MyBlog</div></pre></figure>
+
+<p>生成博客的静态网页，并部署到 Github:</p>
+<figure class="highlight"><pre><div class="line">$ hexo generate <span class="comment">// 生成静态网页</span></div></pre></figure>
+
+<p>在部署之前，还要配置下 Hexo 的服务器地址，打开 <code>~/MyBlog/_config.yml</code> 在文件的最后面，找到并编辑以下的内容：</p>
+<figure class="highlight"><pre><div class="line"><span class="preprocessor"># Deployment</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="title">deploy</span>:</div><div class="line">  <span class="typedef"><span class="keyword">type</span>: github    <span class="comment">------&gt; 直接填写 github</span></span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git   <span class="comment">-----&gt; Github 的仓库地址</span></div><div class="line">  brach: master</div></pre></figure>
+
+<p>保存，在终端运行以下部署命令：</p>
+<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></figure>
+
+<blockquote>
+<p>Hexo 提供了简化的命令：</p>
+</blockquote>
+<figure class="highlight shell"><pre><div class="line">hexo g = hexo generate  <span class="comment">// 生成</span></div><div class="line">hexo d = hexo deploy    <span class="comment">// 部署</span></div><div class="line">hexo s = hexo <span class="keyword">server</span>    <span class="comment">// 运行服务器</span></div></pre></figure>
+
+<p>首次运行部署命令可能会报以下的错误：</p>
+<figure class="highlight"><pre><div class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/kang/temp/.deploy/.git/</div><div class="line"></div><div class="line">*** Please tell <span class="keyword">me</span> who you are.</div><div class="line"></div><div class="line">Run</div><div class="line"></div><div class="line">  git config --<span class="keyword">global</span> user.email <span class="string">"you@example.com"</span></div><div class="line">  git config --<span class="keyword">global</span> user.name <span class="string">"Your Name"</span></div><div class="line"></div><div class="line"><span class="keyword">to</span> <span class="keyword">set</span> your account<span class="comment">'s default identity.</span></div><div class="line">Omit --<span class="keyword">global</span> <span class="keyword">to</span> <span class="keyword">set</span> the identity only <span class="keyword">in</span> this repository.</div><div class="line"></div><div class="line">fatal: unable <span class="keyword">to</span> <span class="keyword">auto</span>-detect email address (got <span class="comment">'kang@ruikye.(none)')</span></div></pre></figure>
+
+<p>这是因为没配置 Git 的提交用户信息，可以通过下面的命令配置：</p>
+<figure class="highlight"><pre><div class="line">$ git config user<span class="class">.email</span> <span class="attr_selector">[你的邮箱]</span></div><div class="line">$ git config user<span class="class">.name</span> <span class="attr_selector">[提交用户名]</span> <span class="comment">// 名字可以随便写</span></div></pre></figure>
+
 
       
     </div>
