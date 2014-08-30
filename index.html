@@ -59,11 +59,11 @@
       
       
         <div class="icon"></div>
-        <time datetime="2014-08-30T08:23:07.000Z"><a href="/2014/08/30/github-gist/">8月 30 2014</a></time>
+        <time datetime="2014-08-30T08:55:46.000Z"><a href="/2014/08/30/androidstudio_ndk/">8月 30 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/30/github-gist/">Github·Gist使用攻略</a></h1>
+    <h1 class="title"><a href="/2014/08/30/androidstudio_ndk/">使用 Android Studio 进行 NDK 开发</a></h1>
   
 
 
@@ -71,75 +71,55 @@
     <div class="entry">
       
         
-        <p><a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 是 <a href="https://github.com" target="_blank" rel="external">Github</a> 推出的基于 Git 的代码片段服务。用户可以提交自己的代码片段或任意的文本作，可以作为个人的代码管理库、文档管理库等。同时 <a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 页面提供访问的 <a href="http://www.baidu.com/s?wd=javascript" target="_blank" rel="external">JavaScript</a> 片段用于嵌入其他网站，如：个人博客等。</p>
+        <p>Android Studio 中添加已编译的 *.so 在 <em><a href="../androidstudio\_so">Android Studio 添加 lib*.so 文件</a></em> 中进行了介绍。这篇文章介绍如何直接在 Android Studio 中编写 NDK 代码并在打包 APK 时自动编译。</p>
+<p>在 Android Studio 中开 NDK 主要做三件事：</p>
 <blockquote>
-<p>但是很多站点粘贴 JavaScript 无效，这时候你可以在 Gist URL 后附加.pibb，得到一个纯 HTML 的版本，然后就可以复制粘贴 HTML 源码到其他网站了。例如: <a href="https://gist.github.com/tiimgreen/10545817.pibb" target="_blank" rel="external">https://gist.github.com/tiimgreen/10545817.pibb</a></p>
-</blockquote>
-<p><a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 作为程序猿居家旅行必备的代码管理工具，极大的方便了 Coder。下面是自己的一些使用 <a href="http://gist.github.com" target="_blank" rel="external">Gist</a> 经验，分享给各位看官：</p>
-<p>使用 <a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 前提必须注册 <a href="http://github.com" target="_blank" rel="external">Github</a> 账户，账户注册比较简单，这里就不做介绍了</p>
-<blockquote>
-<p>如果不知 Github、Git为何物的童鞋就当这个页面不存在吧 ^_^.  </p>
-</blockquote>
-<p>使用、管理 <a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 的几种方式：</p>
-<h2 id="1-_直接使用_https://gist-github-com_创建、管理_Gist：">1. 直接使用 <a href="https://gist.github.com" target="_blank" rel="external">https://gist.github.com</a> 创建、管理 <a href="https://gist.github.com" target="_blank" rel="external">Gist</a>：</h2>
-<blockquote>
-<p>Gist 是以问件的方式管理的，每条 Gist </p>
-</blockquote>
-<p>可以包含若干个文件，文件内容会自动根据选择存储的类型高亮代码，除了支持各种的编程语言外还支持一些常见的文本，如：Markdown、Diff、TeX等。<br>登录 <a href="https://github.com" target="_blank" rel="external">Github</a> 后访问 <a href="https://gist.github.com" target="_blank" rel="external">https://gist.github.com</a> 就打开了个人的 Gist 管理界面，如图点击右上角的 “+” 就可以新建一个 Gist了：</p>
-<blockquote>
-<p><img src="/img/new_tips.png" alt="创建gist"></p>
-</blockquote>
-<p><a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 的整体界面相当的简洁、明了，操作也比较简单。如果不想这条 Gist 被搜索引擎抓取，可以选择创建私有的 Gist, 但是还是可以通过 URL直接访问到的。</p>
-<blockquote>
-<p>注意：Gist 的私有和 Github 的私有项目是不同的</p>
-<p><img src="/img/private.png" alt="私有Gist"></p>
-</blockquote>
-<h2 id="2-_使用_Sublime_Text_2/3_+_Gist插件">2. 使用 <a href="http://www.baidu.com/s?wd=sublime text" target="_blank" rel="external">Sublime Text 2/3</a> + <a href="https://github.com/condemil/Gist" target="_blank" rel="external">Gist插件</a></h2>
-<blockquote>
-<p>Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用），也是HTML和散文先进的文本编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。—- 百度百科</p>
-<p>不知 Sublime Text 为何物或者无爱的请忽略</p>
-</blockquote>
-<p>安装 Gist 插件：</p>
-<p>打开 Sublime Text, 按下快捷键<code>CTRL(⌘)+SHIFT+P</code>打开 Package Control面板，输入<code>Install packages</code>在弹出的插件列表中搜索<code>Gist</code>,回车就开始安装 <a href="https://github.com/condemil/Gist" target="_blank" rel="external">Gist插件</a> 了</p>
-<blockquote>
-<p>如果没有安装 Package Controll 插件，请先安装, 打开 Sublime Text的<em>Console</em> (<code>CTRL+反引号</code>) 输入以下代码：</p>
-<h6 id="For_Sublime_Text_3:">For Sublime Text 3:</h6>
-<p>import urllib.request,os; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), ‘wb’).write(urllib.request.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ + pf.replace(‘ ‘,’%20’)).read())</p>
-<h6 id="For_Sublime_Text_2:">For Sublime Text 2:</h6>
-<p>import urllib2,os; pf=’Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), ‘wb’ ).write( urllib2.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ +pf.replace( ‘ ‘,’%20’ )).read()); print( ‘Please restart Sublime Text to finish installation’)</p>
-<h6 id="手动安装">手动安装</h6>
-<p>可能由于各种原因，无法使用代码安装，那可以通过以下步骤手动安装Package Control：<br>_1. 点击Preferences &gt; Browse Packages菜单  </p>
 <ol>
-<li>进入打开的目录的上层目录，然后再进入Installed Packages/目录  </li>
-<li>下载Package Control.sublime-package并复制到Installed Packages/目录  </li>
-<li>重启Sublime Text。_</li>
+<li>在 <em>local.properties</em> 配置 ndk.dir</li>
+<li>在 <em>build.gradle</em> 中配置 NDK 模块，即 C++ 工程</li>
+<li>添加 C++ 代码文件到指定的目录，如：<em>\<module\> / [app] / [src] / [main] / [jni]</module\></em></li>
+<li>(可选)多同平台(<em>不同的CPU架构</em>)编译</li>
 </ol>
 </blockquote>
-<p>安装 Gist 之后，配置 Github 的账户 Token，用命令行工具输入以下命令：</p>
-<figure class="highlight shell"><pre><div class="line">curl -v -u <span class="type">USERNAME</span> -X <span class="type">POST</span> https://api.github.com/authorizations --data <span class="string">"{\"scopes\":[\"gist\"], \"note\": \"SublimeText 2/3 Gist plugin\"}"</span></div></pre></figure>
+<h2 id="1-_在_local-properties_文件中配置_ndk-dir">1. 在 <em>local.properties</em> 文件中配置 ndk.dir</h2>
+<p>使用 Android Studio 建立的项目会在项目的根目录生成名称为 <em>local.properties</em> 文件。  </p>
+<p>配置代码：</p>
+<figure class="highlight java"><pre><div class="line">sdk.dir=/Users/shanee/Development/Android/sdk</div><div class="line">ndk.dir=/Users/shanee/Development/ndk</div></pre></figure>
 
-<p>其中 <code>USERNAME</code> 你的 Github 帐号名。执行成功之后会输入以下代码：</p>
-<figure class="highlight json"><pre><div class="line">{</div><div class="line">    "<span class="attribute">id</span>": <span class="value"><span class="number">107</span>···<span class="number">41</span></span>,</div><div class="line">    "<span class="attribute">url</span>": <span class="value"><span class="string">"https://api.github.com/authorizations/107···41"</span></span>,    "<span class="attribute">app</span>": <span class="value">{</span></div><div class="line">        "<span class="attribute">name</span>": <span class="value"><span class="string">"SublimeText 2/3 Gist plugin (API)"</span></span>,</div><div class="line">        "<span class="attribute">url</span>": <span class="value"><span class="string">"https://developer.github.com/v3/oauth_authorizations/"</span></span>,</div><div class="line">        "<span class="attribute">client_id</span>": <span class="value"><span class="string">"00000000000000000000"</span></span></div><div class="line">    },</div><div class="line">    "<span class="attribute">token</span>": <span class="value"><span class="string">"a28b686c3a74······c300f42414c7"</span></span>,</div><div class="line">    "<span class="attribute">note</span>": <span class="value"><span class="string">"SublimeText 2/3 Gist plugin"</span></span>,</div><div class="line">    "<span class="attribute">note_url</span>": <span class="value"><span class="literal">null</span></span>,</div><div class="line">    "<span class="attribute">created_at</span>": <span class="value"><span class="string">"2014-08-25T10:54:00Z"</span></span>,</div><div class="line">    "<span class="attribute">updated_at</span>": <span class="value"><span class="string">"2014-08-25T10:54:00Z"</span></span>,</div><div class="line">    "<span class="attribute">scopes</span>": <span class="value">[</span></div><div class="line">        <span class="string">"gist"</span></div><div class="line">    ]</div><div class="line">}</div></pre></figure>
+<h2 id="2-_在_build-gradle_中配置_NDK_模块">2. 在 <em>build.gradle</em> 中配置 NDK 模块</h2>
+<p><em>build.gradle</em> 示例配置：</p>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">    compileSdkVersion <span class="number">19</span></div><div class="line">    buildToolsVersion <span class="string">"20.0.0"</span></div><div class="line"></div><div class="line">    defaultConfig {</div><div class="line">        applicationId <span class="string">"com.example.ndksample"</span></div><div class="line">        minSdkVersion <span class="number">9</span></div><div class="line">        targetSdkVersion <span class="number">19</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line"></div><div class="line">        ndk {</div><div class="line">            moduleName <span class="string">"myEpicGameCode"</span> <span class="comment">// &lt;-- This is the name of my C++ module!</span></div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// ... more gradle stuff here ...</span></div><div class="line"></div><div class="line">} <span class="comment">// end of android section</span></div></pre></figure>
 
+<p>还可以在 <em>ndk</em> 块中指定一些编译参数、依赖库等：</p>
+<figure class="highlight java"><pre><div class="line">ndk {</div><div class="line">    moduleName <span class="string">"myEpicGameCode"</span></div><div class="line">    cFlags <span class="string">"-DANDROID_NDK -D_DEBUG DNULL=0"</span>   <span class="comment">// Define some macros</span></div><div class="line">    ldLibs <span class="string">"EGL"</span>, <span class="string">"GLESv3"</span>, <span class="string">"dl"</span>, <span class="string">"log"</span>       <span class="comment">// Link with these libraries!</span></div><div class="line">    stl <span class="string">"stlport_shared"</span>                      <span class="comment">// Use shared stlport library</span></div><div class="line">}</div></pre></figure>
 
-<p>按下图所示打开 Gist 插件的配置文件：</p>
-<p><img src="/img/menu.png" alt="menu"><br>添加 Github Token:</p>
-<figure class="highlight json"><pre><div class="line">{</div><div class="line">    // Your GitHub API token</div><div class="line">    // see: https://github.com/condemil/Gist#generating-access-token</div><div class="line">    "token": "a28b686c3a74······c300f42414c7", // 从命令行得到的 token</div><div class="line">}</div></pre></figure>
-
-<p>以上，Sublime Text 2/3 的 Gist 插件就配置好了。配置好后，在 Sublime Text 的 <code>Tools</code> ⟶ <code>Gist</code> 菜单下有使用 Gist 的一些命令，如图：</p>
+<h2 id="3-_添加_C/C++_代码到项目">3. 添加 C/C++ 代码到项目</h2>
+<p>默认的，C++ 代码必须添加在指定的目录：</p>
 <blockquote>
-<p><img src="/img/gist_tools.png" alt="gist_tools"></p>
-<p>使用 Gist 插件很爽的一点是，当你编辑完 gist 文件保存时会自动的帮你同步到 Github·Gist 不用担心没保存丢失，保存 Gist 时可以从 <em>Console</em> 看到同步日志</p>
+<ul>
+<li><em>[module_name]</em><ul>
+<li>············<em>[src]</em></li>
+<li>················<em>[main]</em></li>
+<li>····················<em>[jniLibs]</em> ———————- so 目录</li>
+<li>····················<em>[jni]</em> —————————- jni 代码目录</li>
+</ul>
+</li>
+</ul>
 </blockquote>
-<h2 id="3-_使用_GistBox_服务">3. 使用 <a href="http://www.gistboxapp.com/" target="_blank" rel="external">GistBox</a> 服务</h2>
+<p>C/C++ 代码目录示例：</p>
+<p><img src="/img/jniPath.png" alt="jniPath">  </p>
+<p>完成以上的步骤，就可以编译了，如果 C/C++ 中代码有错误也会提示编译失败的哦。</p>
+<p>如果不想使用默认的 JNI 目录，可以在 <em>build.gradle</em> 中指定目录，在 <em>sourceSets.main</em> 块中添加脚本：</p>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  sourceSets.main {</div><div class="line">      jni.srcDirs <span class="string">'src/main/source'</span></div><div class="line">  }</div><div class="line">}</div></pre></figure>
+
+<h2 id="4-_(可选)多同平（CPU架构）台编译">4. (可选)多同平（<em>CPU架构</em>）台编译</h2>
+<p>如果要针对不同的平台分别做优化配置，也可以通过修改 <em>build.gralde</em> 脚本实现，参考配置脚本：</p>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  productFlavors {</div><div class="line">        x86 {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"x86"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        arm {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"armeabi-v7a"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        mips {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"mips"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">} <span class="comment">// android</span></div></pre></figure>
+
+<p>同样在 <em>ndk</em> 块中可以指定编译参数，依赖库等配置。</p>
 <blockquote>
-<p>GistBox 提供一种漂亮的方式来组织代码片段。将你的库保存到云端进行备份，再也不用担心丢失。GistBox采用标准的HTML5技术构建。GistBox使用GitHub的后端，但增加了自己的标签和搜索功能层。使用Github账号登陆Gistbox可以将你的代码直接同步进来，反过来，你在GB上的所有改动也都会同步到Github上；GistBox的结构设 计清晰，从左至右分别是主导航（新建Gist，Gists入口，收藏入口-Labels）、Gists列表（Public/Private）、具体代码 区，亲们可以用Label给代码加上各种分辨标签，方便分类整理，在检索代码时可以用顶部的搜索栏，输入关键词或Label可以更快的搜索到目标代码。</p>
+<p>这篇文章是从 Google+ 上的一篇帖子翻译过来的，没有示例项目的源码；原文地址：<em><a href="http://shaneenishry.com/blog/2014/08/17/ndk-with-android-studio/" target="_blank" rel="external">NDK With Android Studio</a></em>（需翻墙）.</p>
 </blockquote>
-<p>GistBox 是可以直接用 Github 账户登录的，实时同步你的 Gist 到 Github，很方便。GitBox 从体验上来说更加方便，界面元素丰富，功能也比较全。如果不想用 Sublime Text, 又觉着 Github 自己的 Gist 管理太简单，GistBox是一种不错的方式。</p>
-<blockquote>
-<p>GistBox 同时提供了 Chrome 插件</p>
-</blockquote>
-<p>以上就是我使用 Gist 的一些经验，感谢读完全文！</p>
 
       
     </div>
@@ -147,13 +127,13 @@
       
   
   <div class="categories">
-    <a href="/categories/Software/">Software</a>
+    <a href="/categories/Android/">Android</a>
   </div>
 
       
   
   <div class="tags">
-    <a href="/tags/Github/">Github</a>, <a href="/tags/Gist/">Gist</a>
+    <a href="/tags/Android/">Android</a>, <a href="/tags/Android-Studio/">Android Studio</a>
   </div>
 
         <div class="alignright">
@@ -192,6 +172,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2014/08/30/androidstudio_ndk/">使用 Android Studio 进行 NDK 开发</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/30/androidstudio_so/">Android Studio 添加 lib*.so 文件</a>
+      </li>
+    
+      <li>
         <a href="/2014/08/30/github-gist/">Github·Gist使用攻略</a>
       </li>
     
@@ -211,6 +199,10 @@
         <a href="/2014/08/28/Java-单例模式/">Java 单例模式</a>
       </li>
     
+      <li>
+        <a href="/2014/08/28/AsyncTask-的使用/">AsyncTask 的使用</a>
+      </li>
+    
   </ul>
 </div>
 
@@ -220,7 +212,7 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Android/">Android</a><small>1</small></li>
+    <li><a href="/categories/Android/">Android</a><small>3</small></li>
   
     <li><a href="/categories/Hexo/">Hexo</a><small>2</small></li>
   
@@ -236,7 +228,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Android/" style="font-size: 15.00px;">Android</a><a href="/tags/Gist/" style="font-size: 15.00px;">Gist</a><a href="/tags/Github/" style="font-size: 15.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/tags/Hexo-Github/" style="font-size: 10.00px;">Hexo Github</a><a href="/tags/Hexo,-Github/" style="font-size: 10.00px;">Hexo, Github</a><a href="/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/tags/Sublime-Text/" style="font-size: 15.00px;">Sublime Text</a>
+    <a href="/tags/Android/" style="font-size: 20.00px;">Android</a><a href="/tags/Android-Studio/" style="font-size: 15.00px;">Android Studio</a><a href="/tags/Gist/" style="font-size: 10.00px;">Gist</a><a href="/tags/Github/" style="font-size: 10.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 15.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/Sublime-Text/" style="font-size: 10.00px;">Sublime Text</a>
   </div>
 </div>
 

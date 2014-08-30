@@ -4,7 +4,7 @@
   <subtitle><![CDATA[// ruikye's 个人博客]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.ruikye.com/"/>
-  <updated>2014-08-30T08:41:13.279Z</updated>
+  <updated>2014-08-30T09:18:18.332Z</updated>
   <id>http://www.ruikye.com/</id>
   
   <author>
@@ -15,11 +15,148 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[使用 Android Studio 进行 NDK 开发]]></title>
+    <link href="http://www.ruikye.com/2014/08/30/androidstudio_ndk/"/>
+    <id>http://www.ruikye.com/2014/08/30/androidstudio_ndk/</id>
+    <published>2014-08-30T08:55:46.000Z</published>
+    <updated>2014-08-30T09:12:48.000Z</updated>
+    <content type="html"><![CDATA[<p>Android Studio 中添加已编译的 *.so 在 <em><a href="../androidstudio\_so">Android Studio 添加 lib*.so 文件</a></em> 中进行了介绍。这篇文章介绍如何直接在 Android Studio 中编写 NDK 代码并在打包 APK 时自动编译。</p>
+<p>在 Android Studio 中开 NDK 主要做三件事：</p>
+<blockquote>
+<ol>
+<li>在 <em>local.properties</em> 配置 ndk.dir</li>
+<li>在 <em>build.gradle</em> 中配置 NDK 模块，即 C++ 工程</li>
+<li>添加 C++ 代码文件到指定的目录，如：<em>\<module\> / [app] / [src] / [main] / [jni]</module\></em></li>
+<li>(可选)多同平台(<em>不同的CPU架构</em>)编译</li>
+</ol>
+</blockquote>
+<h2 id="1-_在_local-properties_文件中配置_ndk-dir">1. 在 <em>local.properties</em> 文件中配置 ndk.dir</h2>
+<p>使用 Android Studio 建立的项目会在项目的根目录生成名称为 <em>local.properties</em> 文件。  </p>
+<p>配置代码：</p>
+<figure class="highlight java"><pre><div class="line">sdk.dir=/Users/shanee/Development/Android/sdk</div><div class="line">ndk.dir=/Users/shanee/Development/ndk</div></pre></figure>
+
+<h2 id="2-_在_build-gradle_中配置_NDK_模块">2. 在 <em>build.gradle</em> 中配置 NDK 模块</h2>
+<p><em>build.gradle</em> 示例配置：</p>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">    compileSdkVersion <span class="number">19</span></div><div class="line">    buildToolsVersion <span class="string">"20.0.0"</span></div><div class="line"></div><div class="line">    defaultConfig {</div><div class="line">        applicationId <span class="string">"com.example.ndksample"</span></div><div class="line">        minSdkVersion <span class="number">9</span></div><div class="line">        targetSdkVersion <span class="number">19</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line"></div><div class="line">        ndk {</div><div class="line">            moduleName <span class="string">"myEpicGameCode"</span> <span class="comment">// &lt;-- This is the name of my C++ module!</span></div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// ... more gradle stuff here ...</span></div><div class="line"></div><div class="line">} <span class="comment">// end of android section</span></div></pre></figure>
+
+<p>还可以在 <em>ndk</em> 块中指定一些编译参数、依赖库等：</p>
+<figure class="highlight java"><pre><div class="line">ndk {</div><div class="line">    moduleName <span class="string">"myEpicGameCode"</span></div><div class="line">    cFlags <span class="string">"-DANDROID_NDK -D_DEBUG DNULL=0"</span>   <span class="comment">// Define some macros</span></div><div class="line">    ldLibs <span class="string">"EGL"</span>, <span class="string">"GLESv3"</span>, <span class="string">"dl"</span>, <span class="string">"log"</span>       <span class="comment">// Link with these libraries!</span></div><div class="line">    stl <span class="string">"stlport_shared"</span>                      <span class="comment">// Use shared stlport library</span></div><div class="line">}</div></pre></figure>
+
+<h2 id="3-_添加_C/C++_代码到项目">3. 添加 C/C++ 代码到项目</h2>
+<p>默认的，C++ 代码必须添加在指定的目录：</p>
+<blockquote>
+<ul>
+<li><em>[module_name]</em><ul>
+<li>············<em>[src]</em></li>
+<li>················<em>[main]</em></li>
+<li>····················<em>[jniLibs]</em> ———————- so 目录</li>
+<li>····················<em>[jni]</em> —————————- jni 代码目录</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>C/C++ 代码目录示例：</p>
+<p><img src="/img/jniPath.png" alt="jniPath">  </p>
+<p>完成以上的步骤，就可以编译了，如果 C/C++ 中代码有错误也会提示编译失败的哦。</p>
+<p>如果不想使用默认的 JNI 目录，可以在 <em>build.gradle</em> 中指定目录，在 <em>sourceSets.main</em> 块中添加脚本：</p>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  sourceSets.main {</div><div class="line">      jni.srcDirs <span class="string">'src/main/source'</span></div><div class="line">  }</div><div class="line">}</div></pre></figure>
+
+<h2 id="4-_(可选)多同平（CPU架构）台编译">4. (可选)多同平（<em>CPU架构</em>）台编译</h2>
+<p>如果要针对不同的平台分别做优化配置，也可以通过修改 <em>build.gralde</em> 脚本实现，参考配置脚本：</p>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  productFlavors {</div><div class="line">        x86 {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"x86"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        arm {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"armeabi-v7a"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        mips {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"mips"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">} <span class="comment">// android</span></div></pre></figure>
+
+<p>同样在 <em>ndk</em> 块中可以指定编译参数，依赖库等配置。</p>
+<blockquote>
+<p>这篇文章是从 Google+ 上的一篇帖子翻译过来的，没有示例项目的源码；原文地址：<em><a href="http://shaneenishry.com/blog/2014/08/17/ndk-with-android-studio/" target="_blank" rel="external">NDK With Android Studio</a></em>（需翻墙）.</p>
+</blockquote>
+]]></content>
+    
+    
+      <category term="Android" scheme="http://www.ruikye.com/tags/Android/"/>
+    
+      <category term="Android Studio" scheme="http://www.ruikye.com/tags/Android-Studio/"/>
+    
+      <category term="Android" scheme="http://www.ruikye.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android Studio 添加 lib*.so 文件]]></title>
+    <link href="http://www.ruikye.com/2014/08/30/androidstudio_so/"/>
+    <id>http://www.ruikye.com/2014/08/30/androidstudio_so/</id>
+    <published>2014-08-30T08:43:47.000Z</published>
+    <updated>2014-08-30T08:48:53.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>Android Studio 是一个全新的 Android 开发环境，基于IntelliJ IDEA. 类似 Eclipse ADT，Android Studio 提供了集成的 Android 开发工具用于开发和调试，在IDEA的基础上，Android Studio 提供：  </p>
+<ol>
+<li>基于Gradle的构建支持  </li>
+<li>Android 专属的重构和快速修复  </li>
+<li>提示工具以捕获性能、可用性、版本兼容性等问题  </li>
+<li>支持 ProGuard 和应用签名  </li>
+<li>基于模板的向导来生成常用的 Andoid 应用设计和组件  </li>
+<li>功能强大的布局编辑器，可以让你拖拉 UI 控件并进行效果预览<br>——————— 百度百科</li>
+</ol>
+</blockquote>
+<p>Android Stuido 是Google发布的全新的 Android 开发工具，采用了新的 Gradle 构建系统，已 Eclipse 或者 Ant 方式的构建系统有很大区别。为了方便使用 Eclipse 的开发者迁移项目到 Android Studio，在最新的 Eclipse ADT 插件中提供了导出项目为 Gradle 的工具，使用方法：</p>
+<blockquote>
+<p>打开菜单: <code>File</code> -&gt; <code>Export</code>  </p>
+<p><img src="/img/export.png" alt="export">  </p>
+<p>然后选择要导出的项目，导出成功后会在项目的根目录下生成 build.gradle 文件，之后再用 Android Stuido 导入这个项目就完成了迁移</p>
+</blockquote>
+<p>尽管有 ADT 提供的插件方便迁移 Eclipse 项目，但是导出并不是很完美；因为 Android Studio 使用的是新的 Gradle 构建系统，对 JNI 的支持方式有所不同，按上面的方式导出的项目，打包时 *.so 文件不会自动的添加到 APK；下面来介绍 Android Studio 添加 *.so 的几种方式：</p>
+<h2 id="1-_使用_Android_Studio_建立的项目添加_*-so">1. 使用 Android Studio 建立的项目添加 *.so</h2>
+<p>如果直接使用 Android Studio 建立项目，项目结构与 Eclipse 建立的项目结构是不同的：</p>
+<blockquote>
+<ul>
+<li><em>[module_name]</em><ul>
+<li>············<em>[src]</em></li>
+<li>················<em>[main]</em></li>
+<li>····················<em>[jniLibs]</em> ———————- JNI 目录</li>
+<li>·····························<em>[armeabi]</em></li>
+<li>·····························<em>[armeabi-v7a]</em></li>
+<li>·····························<em>[x86]</em></li>
+<li>·····························<em>[mips]</em></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>使用 Android Studio 建立的项目，直接将 *.so 按上面的目录结构放置就可以了。</p>
+<blockquote>
+<p>示例项目：  </p>
+<p><img src="/img/jniLibsPath.png" alt="jnipath"></p>
+</blockquote>
+<p>代码调用：</p>
+<figure class="highlight java"><pre><div class="line">String libName = <span class="string">"helloNDK"</span>; <span class="comment">// the module name of the library, without .so</span></div><div class="line">System.loadLibrary( libName );</div></pre></figure>
+
+<h2 id="2-_编辑_build-gradle">2. 编辑 build.gradle</h2>
+<p>如果是使用的 Eclipse 导出的项目或者由于别的原因 *.so 必须放置在其他的目录，这时可以编辑 build.gradle 脚本，自定义 *.so 目录：</p>
+<ul>
+<li>方法一：</li>
+</ul>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">    <span class="comment">// .. android settings ..</span></div><div class="line">    sourceSets.main {</div><div class="line">      jniLibs.srcDir <span class="string">'src/main/myCppLibraries'</span> <span class="comment">// &lt;-- Set your folder here!</span></div><div class="line">    }</div><div class="line"> }</div></pre></figure>
+
+<ul>
+<li>方法二：</li>
+</ul>
+<figure class="highlight java"><pre><div class="line">task copyNativeLibs(type: Copy) {</div><div class="line">    from fileTree(dir: <span class="string">'libs'</span>, include: <span class="string">'**/*.so'</span> )  into  <span class="string">'build/native-libs'</span></div><div class="line">}</div><div class="line"></div><div class="line">tasks.withType(Compile) { compileTask -&gt; compileTask.dependsOn copyNativeLibs }</div><div class="line"></div><div class="line">clean.dependsOn <span class="string">'cleanCopyNativeLibs'</span></div><div class="line"></div><div class="line">tasks.withType(PackageApplication) { pkgTask -&gt;</div><div class="line">    pkgTask.jniFolders = <span class="keyword">new</span> HashSet()</div><div class="line">    pkgTask.jniFolders .add(<span class="keyword">new</span> File(projectDir, <span class="string">'build/native-libs'</span>))</div><div class="line">}</div></pre></figure>
+
+]]></content>
+    
+    
+      <category term="Android" scheme="http://www.ruikye.com/tags/Android/"/>
+    
+      <category term="Android Studio" scheme="http://www.ruikye.com/tags/Android-Studio/"/>
+    
+      <category term="Android" scheme="http://www.ruikye.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Github·Gist使用攻略]]></title>
     <link href="http://www.ruikye.com/2014/08/30/github-gist/"/>
     <id>http://www.ruikye.com/2014/08/30/github-gist/</id>
     <published>2014-08-30T08:23:07.000Z</published>
-    <updated>2014-08-30T08:40:32.000Z</updated>
+    <updated>2014-08-30T09:17:10.000Z</updated>
     <content type="html"><![CDATA[<p><a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 是 <a href="https://github.com" target="_blank" rel="external">Github</a> 推出的基于 Git 的代码片段服务。用户可以提交自己的代码片段或任意的文本作，可以作为个人的代码管理库、文档管理库等。同时 <a href="https://gist.github.com" target="_blank" rel="external">Gist</a> 页面提供访问的 <a href="http://www.baidu.com/s?wd=javascript" target="_blank" rel="external">JavaScript</a> 片段用于嵌入其他网站，如：个人博客等。</p>
 <blockquote>
 <p>但是很多站点粘贴 JavaScript 无效，这时候你可以在 Gist URL 后附加.pibb，得到一个纯 HTML 的版本，然后就可以复制粘贴 HTML 源码到其他网站了。例如: <a href="https://gist.github.com/tiimgreen/10545817.pibb" target="_blank" rel="external">https://gist.github.com/tiimgreen/10545817.pibb</a></p>
@@ -105,7 +242,7 @@
     <link href="http://www.ruikye.com/2014/08/30/SublimeText-Plugins/"/>
     <id>http://www.ruikye.com/2014/08/30/SublimeText-Plugins/</id>
     <published>2014-08-30T08:14:20.000Z</published>
-    <updated>2014-08-30T08:16:22.000Z</updated>
+    <updated>2014-08-30T09:17:33.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用），也是HTML和散文先进的文本编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。—- 百度百科</p>
 </blockquote>
@@ -170,7 +307,7 @@
     <link href="http://www.ruikye.com/2014/08/30/Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%C2%B7-%E8%BF%9B%E9%98%B6%E7%AF%87/"/>
     <id>http://www.ruikye.com/2014/08/30/Hexo-搭建个人博客-·-进阶篇/</id>
     <published>2014-08-30T05:07:26.000Z</published>
-    <updated>2014-08-30T08:09:39.000Z</updated>
+    <updated>2014-08-30T09:13:01.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Hexo_配置文件__config-yml">Hexo 配置文件 <em>_config.yml</em></h2>
 <p>Hexo 的各种通用的配置都是在博客根目录行下的 <em>_config.yml</em> 文件中设置的。下面介绍一些常用的配置项：</p>
 <figure class="highlight sh"><pre><div class="line"><span class="comment"># Site 基本信息</span></div><div class="line">title: Ruikye                      <span class="comment"># 博客标题，如左上角显示</span></div><div class="line">subtitle: ruikye 的个人博客         <span class="comment"># 博客副标题</span></div><div class="line">description: 移动开发技术分享博客     <span class="comment"># 用于搜索引擎搜索到的描述信息</span></div><div class="line">author: 零雨の夜                    <span class="comment"># 博客署名，一般会现在在博客的最下方，rg: &copy;2014 零雨の夜</span></div><div class="line">email: xxx@xxx.com                <span class="comment"># 可不填</span></div><div class="line">language: zh-CN                   <span class="comment"># 让博客支持中文</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Writing</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">highlight:              <span class="comment"># 代码高亮</span></div><div class="line">  enable: <span class="literal">true</span>          <span class="comment"># 开启代码高亮</span></div><div class="line">  line_number: <span class="literal">false</span>    <span class="comment"># 是否显示行号</span></div><div class="line">  tab_replace: <span class="literal">true</span>     <span class="comment"># 是否替换 tab 为空格</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Pagination</span></div><div class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></div><div class="line">per_page: <span class="number">1</span>             <span class="comment"># 文章分页时，每页最多显示文章数，eg: 我的博客在首页和归档页最多只显示一篇文章</span></div><div class="line">pagination_dir: page    <span class="comment"># 分页目录</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Extensions</span></div><div class="line"><span class="comment">## Plugins: https://github.com/hexojs/hexo/wiki/Plugins</span></div><div class="line"><span class="comment">## Themes: https://github.com/hexojs/hexo/wiki/Themes</span></div><div class="line">theme: bs-light         <span class="comment"># 这里配置博客的主题风格，主题安装在 themes/ 目录下，这里的值就是主题的文件夹名字 </span></div><div class="line">exclude_generator:</div><div class="line"></div><div class="line">plugins:</div><div class="line">- hexo-generator-feed   <span class="comment"># 安装、启用的插件，这里是启动 RSS 订阅的插件</span></div><div class="line"></div><div class="line"><span class="comment"># Deployment</span></div><div class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: github                                                  <span class="comment"># 博客托管服务器类型</span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git  <span class="comment"># 托管服务器地址</span></div><div class="line">  brach: master                                                 <span class="comment"># 博客使用的代码分支</span></div></pre></figure>
@@ -234,7 +371,7 @@
     <link href="http://www.ruikye.com/2014/08/29/Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%C2%B7-%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     <id>http://www.ruikye.com/2014/08/29/Hexo-搭建个人博客-·-基础篇/</id>
     <published>2014-08-29T14:35:13.000Z</published>
-    <updated>2014-08-30T05:10:00.000Z</updated>
+    <updated>2014-08-30T09:17:19.000Z</updated>
     <content type="html"><![CDATA[<p>最近 Github 在 IT 界是火得一踏糊涂，作为一个程序猿没听过 Github 真觉得 Out 了。本身 Github 是一个基于 git 版本控制系统的托管仓库，程序员可以在 Github 上托管代码，设计师可以在 Github 上协同创作等等各种方便。最近 Apple 为 IOS 发布了新的编程语言，北邮的几个学生就在 Github 上发起了协同翻译《The Swift Programming Language》英文版，项目地址：<a href="https://github.com/numbbbbb/the-swift-programming-language-in-chinese" target="_blank" rel="external">中文版 Apple 官方 Swift 教程</a>。</p>
 <p>同时，Github 为了更好的程序员介绍自己的项目，提供了 Pages 功能，Pages 功能就是为每个项目提供一种静态网页的描述方式，很多网友就利用 Pages 功能搭建了自己的个人博客，这篇文章就是介绍如何使用 Hexo 快速的在 Github 上搭建自己的个人博客。</p>
 <blockquote>
@@ -353,7 +490,7 @@
     <link href="http://www.ruikye.com/2014/08/28/Java-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
     <id>http://www.ruikye.com/2014/08/28/Java-单例模式/</id>
     <published>2014-08-28T14:55:07.000Z</published>
-    <updated>2014-08-30T08:18:43.000Z</updated>
+    <updated>2014-08-30T09:17:29.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li>私有化构造函数（饿汉模式）：    </li>
 </ol>
@@ -402,7 +539,7 @@
     <link href="http://www.ruikye.com/2014/08/28/AsyncTask-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.ruikye.com/2014/08/28/AsyncTask-的使用/</id>
     <published>2014-08-28T11:50:20.000Z</published>
-    <updated>2014-08-29T09:16:50.000Z</updated>
+    <updated>2014-08-30T09:17:04.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>AsyncTask是 Android 提供的在 UI 线程处理耗时操作的类，内部的实现原理是 Thread + Handle 的方式。AsyncTask 是用于处理耗时不是很长的异步操作（一般秒级的操作比较合适）；如果要执行时间很长的或者循环的异步任务，推荐使用其他的多线程 API, 比如：Thread, FetureTask, ThreadPoolExecutor。</p>
 </blockquote>

@@ -63,11 +63,11 @@
       
       
         <div class="icon"></div>
-        <time datetime="2014-08-30T08:14:20.000Z"><a href="/2014/08/30/SublimeText-Plugins/">8月 30 2014</a></time>
+        <time datetime="2014-08-30T08:43:47.000Z"><a href="/2014/08/30/androidstudio_so/">8月 30 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/30/SublimeText-Plugins/">Sublime Text 推荐插件</a></h1>
+    <h1 class="title"><a href="/2014/08/30/androidstudio_so/">Android Studio 添加 lib*.so 文件</a></h1>
   
 
 
@@ -76,55 +76,59 @@
       
         
         <blockquote>
-<p>Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用），也是HTML和散文先进的文本编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。—- 百度百科</p>
-</blockquote>
-<h4 id="1-_Package_Control">1. <a href="https://github.com/wbond/sublime_package_control" target="_blank" rel="external">Package Control</a></h4>
-<p>Package Control 是 Sublime Text 管理其他插件的工具，可以实现在线安装、删除插件等功能。</p>
-<p>安装方法，打开 Sublime Text，按快捷键 <code>CTRL+反引号</code> 调出控制台(<em>Console</em>), 输入以下代码 ：</p>
-<pre><code>Sublime <span class="built_in">Text</span> <span class="number">2</span> 安装代码：
-</code></pre><blockquote>
-<p>mport urllib2,os; pf=’Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), ‘wb’ ).write( urllib2.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ +pf.replace( ‘ ‘,’%20’ )).read()); print( ‘Please restart Sublime Text to finish installation’)</p>
-</blockquote>
-<pre><code>Sublime <span class="built_in">Text</span> <span class="number">3</span> 安装代码：
-</code></pre><blockquote>
-<p>import urllib.request,os; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), ‘wb’).write(urllib.request.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ + pf.replace(‘ ‘,’%20’)).read())</p>
-</blockquote>
-<pre><code>手动安装
-</code></pre><blockquote>
-<p>可能由于各种原因，无法使用代码安装，那可以通过以下步骤手动安装Package Control：</p>
+<p>Android Studio 是一个全新的 Android 开发环境，基于IntelliJ IDEA. 类似 Eclipse ADT，Android Studio 提供了集成的 Android 开发工具用于开发和调试，在IDEA的基础上，Android Studio 提供：  </p>
 <ol>
-<li>点击Preferences &gt; Browse Packages菜单<ol>
-<li>进入打开的目录的上层目录，然后再进入Installed Packages/目录</li>
-<li>下载Package Control.sublime-package并复制到Installed Packages/目录</li>
-<li>重启Sublime Text。</li>
+<li>基于Gradle的构建支持  </li>
+<li>Android 专属的重构和快速修复  </li>
+<li>提示工具以捕获性能、可用性、版本兼容性等问题  </li>
+<li>支持 ProGuard 和应用签名  </li>
+<li>基于模板的向导来生成常用的 Andoid 应用设计和组件  </li>
+<li>功能强大的布局编辑器，可以让你拖拉 UI 控件并进行效果预览<br>——————— 百度百科</li>
 </ol>
+</blockquote>
+<p>Android Stuido 是Google发布的全新的 Android 开发工具，采用了新的 Gradle 构建系统，已 Eclipse 或者 Ant 方式的构建系统有很大区别。为了方便使用 Eclipse 的开发者迁移项目到 Android Studio，在最新的 Eclipse ADT 插件中提供了导出项目为 Gradle 的工具，使用方法：</p>
+<blockquote>
+<p>打开菜单: <code>File</code> -&gt; <code>Export</code>  </p>
+<p><img src="/img/export.png" alt="export">  </p>
+<p>然后选择要导出的项目，导出成功后会在项目的根目录下生成 build.gradle 文件，之后再用 Android Stuido 导入这个项目就完成了迁移</p>
+</blockquote>
+<p>尽管有 ADT 提供的插件方便迁移 Eclipse 项目，但是导出并不是很完美；因为 Android Studio 使用的是新的 Gradle 构建系统，对 JNI 的支持方式有所不同，按上面的方式导出的项目，打包时 *.so 文件不会自动的添加到 APK；下面来介绍 Android Studio 添加 *.so 的几种方式：</p>
+<h2 id="1-_使用_Android_Studio_建立的项目添加_*-so">1. 使用 Android Studio 建立的项目添加 *.so</h2>
+<p>如果直接使用 Android Studio 建立项目，项目结构与 Eclipse 建立的项目结构是不同的：</p>
+<blockquote>
+<ul>
+<li><em>[module_name]</em><ul>
+<li>············<em>[src]</em></li>
+<li>················<em>[main]</em></li>
+<li>····················<em>[jniLibs]</em> ———————- JNI 目录</li>
+<li>·····························<em>[armeabi]</em></li>
+<li>·····························<em>[armeabi-v7a]</em></li>
+<li>·····························<em>[x86]</em></li>
+<li>·····························<em>[mips]</em></li>
+</ul>
 </li>
-</ol>
+</ul>
 </blockquote>
-<p> 安装完成后，可以使用<code>CTRL(CMD)+SHIFT+P</code>快捷键打开控制面板，输入: <em>package control</em> 。</p>
-<h4 id="2-_SideBarEnhancements">2. <a href="https://github.com/titoBouzout/SideBarEnhancements" target="_blank" rel="external">SideBarEnhancements</a></h4>
-<p>直接使用 Package Control 安装，SideBarEnhancements是 Sublime Text中强大的 Sidebar 插件，Sublime Text 本身的 Sidebar 提供的右键菜单非常简陋，有 SideBarEnhancements 之后，可以实现很多使用的功能，比如：在文件浏览器中打开文件等。</p>
-<h4 id="3-_ConvertToUTF8">3. <a href="https://github.com/seanliang/ConvertToUTF8" target="_blank" rel="external">ConvertToUTF8</a></h4>
-<p>直接使用 Package Control 安装。Sublime Text 本对中文支持不太好，如果直接打开 GBK 编码格式的文件会出现乱码的情况，ConvertToUTF8 可以将 GBK 等其他的编码文件转换为 UTF8 显示，解决中文乱码问题。</p>
+<p>使用 Android Studio 建立的项目，直接将 *.so 按上面的目录结构放置就可以了。</p>
 <blockquote>
-<p>通过本插件，您可以编辑并保存目前编码不被 Sublime Text 支持的文件，特别是中日韩用户使用的 GB2312，GBK，BIG5，EUC-KR，EUC-JP 等。ConvertToUTF8 同时支持 Sublime Text 2 和 3。 ——- ConvertToUTF8 官方介绍</p>
+<p>示例项目：  </p>
+<p><img src="/img/jniLibsPath.png" alt="jnipath"></p>
 </blockquote>
-<h4 id="4-_JsFormat">4. <a href="https://github.com/jdc0589/JsFormat" target="_blank" rel="external">JsFormat</a></h4>
-<p>直接使用 Package Control 安装。JsFormat 顾名思义，是一个可以格式化 JavaScript 代码的插件（也可以格式化Json），格式化是文件名必须保存问 *.js 或 *.json, 这样插件才能识别出代码。</p>
-<h4 id="5-_Markdown_Preview">5. <a href="https://github.com/revolunet/sublimetext-markdown-preview" target="_blank" rel="external">Markdown Preview</a></h4>
-<p>直接使用 Package Control 安装。Markdown Preview 是一个支持 Markdown 标记语言的插件，Sublime Text 本身是支持 Markdown 的，但是显示不太美观。同时， Markdown Preview 还支持导出 HTML 或者在浏览器中打开预览。</p>
-<p>使用方法：</p>
-<blockquote>
-<p>打开控制面板（<code>CTRL+SHIFT+P</code>），输入: <em>markdown preview</em> 就可看到相关的命令了。</p>
-</blockquote>
-<h4 id="6-_MarkdownEditing">6. <a href="https://github.com/SublimeText-Markdown/MarkdownEditing" target="_blank" rel="external">MarkdownEditing</a></h4>
-<p>直接使用 Package Control 安装。MardownEditing 是一款功能更加强大的 Markdown 插件。最大的特色是支持 <a href="https://help.github.com/articles/github-flavored-markdown" target="_blank" rel="external">GFM</a> ( GitHub flavored Markdown) 代码高亮。</p>
-<blockquote>
-<p>Markdown plugin for Sublime Text. Provides a decent Markdown color scheme (light and dark) with more robust syntax highlighting and useful Markdown editing features for Sublime Text. 3 flavors are supported: Standard Markdown, GitHub flavored Markdown, MultiMarkdown. </p>
-</blockquote>
-<h4 id="7-_Spacegray">7. <a href="https://github.com/kkga/spacegray" target="_blank" rel="external">Spacegray</a></h4>
-<p>直接使用 Package Control 安装。Spacegray 是一款高大上的 Sublime Text 主题。有 Ocean Dark、 Ocean Light 和 Eighties Dark 三中主题。</p>
-<p>其他的插件还有：<a href="https://github.com/SublimeText/Tag" target="_blank" rel="external">Tag</a>, <a href="https://github.com/condemil/Gist" target="_blank" rel="external">Gist</a>, <a href="https://github.com/wbond/sublime_alignment" target="_blank" rel="external">Alignment</a>, <a href="https://github.com/alienhard/SublimeAllAutocomplete" target="_blank" rel="external">All AutoComplete</a> 等等…</p>
+<p>代码调用：</p>
+<figure class="highlight java"><pre><div class="line">String libName = <span class="string">"helloNDK"</span>; <span class="comment">// the module name of the library, without .so</span></div><div class="line">System.loadLibrary( libName );</div></pre></figure>
+
+<h2 id="2-_编辑_build-gradle">2. 编辑 build.gradle</h2>
+<p>如果是使用的 Eclipse 导出的项目或者由于别的原因 *.so 必须放置在其他的目录，这时可以编辑 build.gradle 脚本，自定义 *.so 目录：</p>
+<ul>
+<li>方法一：</li>
+</ul>
+<figure class="highlight java"><pre><div class="line">android {</div><div class="line">    <span class="comment">// .. android settings ..</span></div><div class="line">    sourceSets.main {</div><div class="line">      jniLibs.srcDir <span class="string">'src/main/myCppLibraries'</span> <span class="comment">// &lt;-- Set your folder here!</span></div><div class="line">    }</div><div class="line"> }</div></pre></figure>
+
+<ul>
+<li>方法二：</li>
+</ul>
+<figure class="highlight java"><pre><div class="line">task copyNativeLibs(type: Copy) {</div><div class="line">    from fileTree(dir: <span class="string">'libs'</span>, include: <span class="string">'**/*.so'</span> )  into  <span class="string">'build/native-libs'</span></div><div class="line">}</div><div class="line"></div><div class="line">tasks.withType(Compile) { compileTask -&gt; compileTask.dependsOn copyNativeLibs }</div><div class="line"></div><div class="line">clean.dependsOn <span class="string">'cleanCopyNativeLibs'</span></div><div class="line"></div><div class="line">tasks.withType(PackageApplication) { pkgTask -&gt;</div><div class="line">    pkgTask.jniFolders = <span class="keyword">new</span> HashSet()</div><div class="line">    pkgTask.jniFolders .add(<span class="keyword">new</span> File(projectDir, <span class="string">'build/native-libs'</span>))</div><div class="line">}</div></pre></figure>
+
 
       
     </div>
@@ -132,13 +136,13 @@
       
   
   <div class="categories">
-    <a href="/categories/Software/">Software</a>
+    <a href="/categories/Android/">Android</a>
   </div>
 
       
   
   <div class="tags">
-    <a href="/tags/Sublime-Text/">Sublime Text</a>
+    <a href="/tags/Android/">Android</a>, <a href="/tags/Android-Studio/">Android Studio</a>
   </div>
 
         <div class="alignright">
@@ -180,6 +184,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2014/08/30/androidstudio_ndk/">使用 Android Studio 进行 NDK 开发</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/30/androidstudio_so/">Android Studio 添加 lib*.so 文件</a>
+      </li>
+    
+      <li>
         <a href="/2014/08/30/github-gist/">Github·Gist使用攻略</a>
       </li>
     
@@ -199,6 +211,10 @@
         <a href="/2014/08/28/Java-单例模式/">Java 单例模式</a>
       </li>
     
+      <li>
+        <a href="/2014/08/28/AsyncTask-的使用/">AsyncTask 的使用</a>
+      </li>
+    
   </ul>
 </div>
 
@@ -208,7 +224,7 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Android/">Android</a><small>1</small></li>
+    <li><a href="/categories/Android/">Android</a><small>3</small></li>
   
     <li><a href="/categories/Hexo/">Hexo</a><small>2</small></li>
   
@@ -224,7 +240,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Android/" style="font-size: 15.00px;">Android</a><a href="/tags/Gist/" style="font-size: 15.00px;">Gist</a><a href="/tags/Github/" style="font-size: 15.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/tags/Hexo-Github/" style="font-size: 10.00px;">Hexo Github</a><a href="/tags/Hexo,-Github/" style="font-size: 10.00px;">Hexo, Github</a><a href="/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/tags/Sublime-Text/" style="font-size: 15.00px;">Sublime Text</a>
+    <a href="/tags/Android/" style="font-size: 20.00px;">Android</a><a href="/tags/Android-Studio/" style="font-size: 15.00px;">Android Studio</a><a href="/tags/Gist/" style="font-size: 10.00px;">Gist</a><a href="/tags/Github/" style="font-size: 10.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 15.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/Sublime-Text/" style="font-size: 10.00px;">Sublime Text</a>
   </div>
 </div>
 

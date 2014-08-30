@@ -59,11 +59,11 @@
       
       
         <div class="icon"></div>
-        <time datetime="2014-08-28T14:55:07.000Z"><a href="/2014/08/28/Java-单例模式/">8月 28 2014</a></time>
+        <time datetime="2014-08-30T05:07:26.000Z"><a href="/2014/08/30/Hexo-搭建个人博客-·-进阶篇/">8月 30 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/28/Java-单例模式/">Java 单例模式</a></h1>
+    <h1 class="title"><a href="/2014/08/30/Hexo-搭建个人博客-·-进阶篇/">Hexo 搭建个人博客 · 进阶篇</a></h1>
   
 
 
@@ -71,40 +71,55 @@
     <div class="entry">
       
         
-        <ol>
-<li>私有化构造函数（饿汉模式）：    </li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span> </span>{</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Singleton1 sIntance = <span class="keyword">new</span> Singleton1();</div><div class="line"> </div><div class="line">  <span class="keyword">private</span> <span class="title">Singleton1</span>(){</div><div class="line">   }</div><div class="line"> </div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span>(){</div><div class="line">      <span class="keyword">return</span> sIntance;</div><div class="line">   }</div><div class="line">}</div></pre></figure>
+        <h2 id="Hexo_配置文件__config-yml">Hexo 配置文件 <em>_config.yml</em></h2>
+<p>Hexo 的各种通用的配置都是在博客根目录行下的 <em>_config.yml</em> 文件中设置的。下面介绍一些常用的配置项：</p>
+<figure class="highlight sh"><pre><div class="line"><span class="comment"># Site 基本信息</span></div><div class="line">title: Ruikye                      <span class="comment"># 博客标题，如左上角显示</span></div><div class="line">subtitle: ruikye 的个人博客         <span class="comment"># 博客副标题</span></div><div class="line">description: 移动开发技术分享博客     <span class="comment"># 用于搜索引擎搜索到的描述信息</span></div><div class="line">author: 零雨の夜                    <span class="comment"># 博客署名，一般会现在在博客的最下方，rg: &copy;2014 零雨の夜</span></div><div class="line">email: xxx@xxx.com                <span class="comment"># 可不填</span></div><div class="line">language: zh-CN                   <span class="comment"># 让博客支持中文</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Writing</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">highlight:              <span class="comment"># 代码高亮</span></div><div class="line">  enable: <span class="literal">true</span>          <span class="comment"># 开启代码高亮</span></div><div class="line">  line_number: <span class="literal">false</span>    <span class="comment"># 是否显示行号</span></div><div class="line">  tab_replace: <span class="literal">true</span>     <span class="comment"># 是否替换 tab 为空格</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Pagination</span></div><div class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></div><div class="line">per_page: <span class="number">1</span>             <span class="comment"># 文章分页时，每页最多显示文章数，eg: 我的博客在首页和归档页最多只显示一篇文章</span></div><div class="line">pagination_dir: page    <span class="comment"># 分页目录</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Extensions</span></div><div class="line"><span class="comment">## Plugins: https://github.com/hexojs/hexo/wiki/Plugins</span></div><div class="line"><span class="comment">## Themes: https://github.com/hexojs/hexo/wiki/Themes</span></div><div class="line">theme: bs-light         <span class="comment"># 这里配置博客的主题风格，主题安装在 themes/ 目录下，这里的值就是主题的文件夹名字 </span></div><div class="line">exclude_generator:</div><div class="line"></div><div class="line">plugins:</div><div class="line">- hexo-generator-feed   <span class="comment"># 安装、启用的插件，这里是启动 RSS 订阅的插件</span></div><div class="line"></div><div class="line"><span class="comment"># Deployment</span></div><div class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: github                                                  <span class="comment"># 博客托管服务器类型</span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git  <span class="comment"># 托管服务器地址</span></div><div class="line">  brach: master                                                 <span class="comment"># 博客使用的代码分支</span></div></pre></figure>
 
-<ol>
-<li>私有化构造函数，并提供静态获获取实例方法（懒汉模式）：</li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton sInstance;</div><div class="line"> </div><div class="line">    <span class="keyword">private</span> <span class="title">Singleton</span>() {</div><div class="line">     }</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>(){</div><div class="line">        <span class="keyword">if</span>(sInstance == <span class="keyword">null</span>){</div><div class="line">             sInstance = <span class="keyword">new</span> Singleton();</div><div class="line">         }</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> sInstance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
+<p>除了 Hexo 的通用配置外，每个主题还有各自的配置文件，主题的配置文件放在：themes/[xxx]/_config.yml, eg: themes/bs-light/_config.yml，下面以 <code>bs-light</code> 为例：</p>
+<figure class="highlight sh"><pre><div class="line"><span class="comment"># 导航栏，如右上角的显示，Tips: RSS 栏是插件添加的不再这里</span></div><div class="line">menu:</div><div class="line">  首页: /                 <span class="comment"># 格式是：[显示标签]:[索引目录]</span></div><div class="line">  存档: /archives</div><div class="line"></div><div class="line"><span class="comment"># 文章右边的小部件</span></div><div class="line">widgets:</div><div class="line"><span class="comment"># search/tag/category/recent_posts/tagcloud   ----&gt; 这里是 bs-light 的可用小部件</span></div><div class="line">- search                 <span class="comment"># 搜索框</span></div><div class="line">- recent_posts           <span class="comment"># 最近发布的文章</span></div><div class="line">- category               <span class="comment"># 存档目录</span></div><div class="line">- tagcloud               <span class="comment"># 文章的标签集合</span></div><div class="line"></div><div class="line"><span class="comment"># 如果在文章的 *.md 中使用 &lt;!-- more --&gt;，那么之后的内容不会在首页显示，而是显示 阅读全文 的链接，显示可以更改</span></div><div class="line"><span class="comment"># 如：更多，查看原文等</span></div><div class="line">excerpt_link: 阅读全文</div><div class="line"></div><div class="line"><span class="comment"># 博客的社交分享，eg: 博客底部的两个图标</span></div><div class="line">social:</div><div class="line"><span class="comment"># key weibo/twitter/google/github/stackoverflow/rss</span></div><div class="line"><span class="comment"># value url</span></div><div class="line"><span class="comment"># e.g github: https://github.com/DaiXiang</span></div><div class="line">  github: https://github.com/rakkang</div><div class="line">  rss: /atom.xml</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">cnzz_analytics: <span class="literal">true</span>     <span class="comment"># 博客的访问统计，这里使用 CNZZ 的统计</span></div><div class="line"><span class="comment"># google_analytics:</span></div><div class="line"><span class="comment"># rss:</span></div><div class="line"></div><div class="line"><span class="comment"># comment_provider:      # 评论功能，一般使用国内的 多说评论</span></div><div class="line"><span class="comment"># Facebook comment</span></div></pre></figure>
 
-<ol>
-<li><p>单元素 Enum 类型实现单列（强烈推荐）：</p>
-<p>参考：《Effective Java》, 推荐使用该方法，理由如下：</p>
-<ul>
-<li>绝对的局唯一，可以序列化</li>
-<li>绝对的预防反射攻击</li>
-<li>绝对的简洁</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton {</div><div class="line">    INSTANCE;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomthing</span>(){</div><div class="line">        Log.d(<span class="string">"Sigleton"</span> , <span class="string">"This is a single instace!"</span> );</div><div class="line">     }</div><div class="line">}</div></pre></figure>
+<h2 id="为文章添加_Tag、Category_属性">为文章添加 <em>Tag</em>、<em>Category</em> 属性</h2>
+<p>通常，使用下面命令新建的文章模版时，会在文章模版的头部出现一些属性信息：</p>
+<figure class="highlight"><pre><div class="line">$ hexo <span class="built_in">new</span> <span class="built_in">post</span> <span class="string">"a new article"</span></div></pre></figure>
 
-<ol>
-<li><p>利用 JVM 类加载机制（多线程）：  </p>
-<p>我们知道 JVM 加载类时只会加载一次，可以利用此特性实现单例。优点：</p>
-<ul>
-<li>可以多线程使用</li>
-<li>绝对唯一</li>
-<li>不调用 getInstance 不会实例化</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">     <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Holder</span> </span>{</div><div class="line">         <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">private</span> <span class="title">Singleton</span>(){</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() {</div><div class="line">         <span class="keyword">return</span> Holder. instance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
+<p>文章模版的属性信息：</p>
+<figure class="highlight sh"><pre><div class="line">title: Hexo 搭建个人博客 · 进阶篇    <span class="comment"># 文章显示标题</span></div><div class="line">date: <span class="number">2014</span>-<span class="number">08</span>-<span class="number">30</span> <span class="number">13</span>:<span class="number">07</span>:<span class="number">26</span>         <span class="comment"># 文章创建日期</span></div><div class="line">tags: hexo                        <span class="comment"># Tag 属性，如果多个 Tag 使用：[Tag 1, Tag 2 ...]</span></div><div class="line">categories: hexo                  <span class="comment"># Category 属性，多个时使用：[Category 1, ...]；默认是没有这个的，下面有介绍</span></div><div class="line">---</div></pre></figure>
 
+<p>在模版中添加 <em>Categories</em> 属性，在博客根目录下 scaffolds/ 文件夹中有各种文章类型的模版，比如在：scaffolds/post.md 中：</p>
+<figure class="highlight sh"><pre><div class="line">title: title</div><div class="line">date: date</div><div class="line">tags:</div><div class="line">categories:                       <span class="comment"># 在这里添加 Category 属性，如果要修改其他的模版，同样的修改方式</span></div></pre></figure>
+
+<h2 id="添加多说评论">添加多说评论</h2>
+<p>Hexo 默认使用的 Facebook 的评论代码，在天朝由于众所周知的原因，不能使用。这里介绍使用过年的多说评论：<br>多说官网：<a href="http://duoshuo.com/" target="_blank" rel="external">http://duoshuo.com/</a>, 现在多少网址注册，按流程拿到代码：</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">&lt;!-- 多说评论框 start --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> </span></div><div class="line">     <span class="attribute">data-thread-key</span>=<span class="value">"请将此处替换成文章在你的站点中的ID"</span> </div><div class="line">     <span class="attribute">data-title</span>=<span class="value">"请替换成文章的标题"</span> </div><div class="line">     <span class="attribute">data-url</span>=<span class="value">"请替换成文章的网址"</span>&gt;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 多说评论框 end --&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"ruikye"</span>};</div><div class="line">    (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? </div><div class="line">                    <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">        ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] </div><div class="line">         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</div><div class="line">    })();</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></div></pre></figure>
+
+<p>首先，打开 themes/[xxx]/layout/_partial/article.ejs 文件，在最后面添加多说评论框：</p>
+<figure class="highlight"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (page.comments){ %&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span></div><div class="line">    ...</div><div class="line">    <span class="comment">&lt;!-- 多说评论框 end --&gt;</span></div><div class="line"><span class="vbscript">&lt;% } %&gt;</span></div></pre></figure>
+
+<p>然后，打开 themes/[xxx]/layout/_partial/after_footer.ejs 文件，在最后添加多说 JS 脚本代码：</p>
+<figure class="highlight"><pre><div class="line"><span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></div><div class="line">...</div><div class="line"><span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></div></pre></figure>
+
+<p>这样多说评论就添加好了，点击文章的标题，在打开的页面下方就会出现多说的评论框。</p>
+<h2 id="添加百度分享">添加百度分享</h2>
+<p>同样，使用百度分享要先到百度分享官网：<a href="http://share.baidu.com/" target="_blank" rel="external">http://share.baidu.com/</a> 按照流程获取 JS 脚本代码。打开 themes/[xxx]/layout/_partial/post/share.ejs，删除文件内容，用获取到的百度分享代码替换：</p>
+<figure class="highlight"><pre><div class="line">&lt;div <span class="variable">class=</span><span class="string">"bdsharebuttonbox"</span>&gt;</div><div class="line">    &lt;a <span class="variable">href=</span><span class="string">"#"</span> <span class="variable">class=</span><span class="string">"bds_more"</span> <span class="variable">data-cmd=</span><span class="string">"more"</span>&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">    &lt;a <span class="variable">href=</span><span class="string">"#"</span> <span class="variable">class=</span><span class="string">"bds_qzone"</span> <span class="variable">data-cmd=</span><span class="string">"qzone"</span> <span class="variable">title=</span><span class="string">"分享到QQ空间"</span>&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">    &lt;a <span class="variable">href=</span><span class="string">"#"</span> <span class="variable">class=</span><span class="string">"bds_tsina"</span> <span class="variable">data-cmd=</span><span class="string">"tsina"</span> <span class="variable">title=</span><span class="string">"分享到新浪微博"</span>&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">    &lt;a <span class="variable">href=</span><span class="string">"#"</span> <span class="variable">class=</span><span class="string">"bds_tqq"</span> <span class="variable">data-cmd=</span><span class="string">"tqq"</span> <span class="variable">title=</span><span class="string">"分享到腾讯微博"</span>&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">    &lt;a <span class="variable">href=</span><span class="string">"#"</span> <span class="variable">class=</span><span class="string">"bds_renren"</span> <span class="variable">data-cmd=</span><span class="string">"renren"</span> <span class="variable">title=</span><span class="string">"分享到人人网"</span>&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">    &lt;a <span class="variable">href=</span><span class="string">"#"</span> <span class="variable">class=</span><span class="string">"bds_weixin"</span> <span class="variable">data-cmd=</span><span class="string">"weixin"</span> <span class="variable">title=</span><span class="string">"分享到微信"</span>&gt;</div><div class="line">    &lt;/a&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    window.<span class="variable">_bd_share_config =</span> {</div><div class="line">        <span class="string">"common"</span>: {</div><div class="line">            <span class="string">"bdSnsKey"</span>: {},</div><div class="line">            <span class="string">"bdText"</span>: <span class="string">""</span>,</div><div class="line">            <span class="string">"bdMini"</span>: <span class="string">"1"</span>,</div><div class="line">            <span class="string">"bdMiniList"</span>: <span class="constant">false</span>,</div><div class="line">            <span class="string">"bdPic"</span>: <span class="string">""</span>,</div><div class="line">            <span class="string">"bdStyle"</span>: <span class="string">"1"</span>,</div><div class="line">            <span class="string">"bdSize"</span>: <span class="string">"16"</span></div><div class="line">        },</div><div class="line">        <span class="string">"share"</span>: {},</div><div class="line">        <span class="string">"image"</span>: {</div><div class="line">            <span class="string">"viewList"</span>: [<span class="string">"qzone"</span>, <span class="string">"tsina"</span>, <span class="string">"tqq"</span>, <span class="string">"renren"</span>, <span class="string">"weixin"</span>],</div><div class="line">            <span class="string">"viewText"</span>: <span class="string">"分享到："</span>,</div><div class="line">            <span class="string">"viewSize"</span>: <span class="string">"16"</span></div><div class="line">        }</div><div class="line">    };</div><div class="line">    <span class="keyword">with</span>(document) <span class="number">0</span>[(getElementsByTagName('head')[<span class="number">0</span>] || body).appendChild(createElement('script')).<span class="variable">src =</span> </div><div class="line">            'http://bdimg.share.baidu.com/static/api/js/share.js?<span class="variable">v=</span><span class="number">89860593</span>.js?<span class="variable">cdnversion=</span>' </div><div class="line">                    + ~ ( - new Date() / <span class="number">36</span>e5)];</div><div class="line">&lt;/script&gt;</div></pre></figure>
+
+<h2 id="安装_RSS_插件">安装 RSS 插件</h2>
+<p>RSS 插件要依赖 Node.js 安装，进入博客的本目了，执行命令：</p>
+<figure class="highlight shell"><pre><div class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-generator-feed <span class="comment">--save</span></span></div></pre></figure>
+
+<p>安装之后，可以在通用的 <em>_config.yml</em> 文件中配置插件：</p>
+<figure class="highlight sh"><pre><div class="line">feed:</div><div class="line">    <span class="built_in">type</span>: atom</div><div class="line">    path: atom.xml</div><div class="line">    limit: <span class="number">20</span></div></pre></figure>
+
+<h2 id="安装_Sitemap">安装 Sitemap</h2>
+<p>Sitemap 是搜索引擎抓取网站要用到的，安装命令：</p>
+<figure class="highlight shell"><pre><div class="line">$ npm <span class="operator"><span class="keyword">install</span> hexo-generator-sitemap <span class="comment">--save</span></span></div></pre></figure>
+
+<p>可选配置：</p>
+<figure class="highlight sh"><pre><div class="line">sitemap:</div><div class="line">    path: sitemap.xml</div></pre></figure>
+
+<p>按上面的配置之后，你的博客立马变得功能丰富了很多有木有～～～</p>
+<h2 id="参考">参考</h2>
+<p>【1】：<a href="https://github.com/hexojs/hexo/wiki/Plugins" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Plugins</a></p>
 
       
     </div>
@@ -112,13 +127,13 @@
       
   
   <div class="categories">
-    <a href="/categories/Java/">Java</a>
+    <a href="/categories/Hexo/">Hexo</a>
   </div>
 
       
   
   <div class="tags">
-    <a href="/tags/Java/">Java</a>
+    <a href="/tags/Hexo/">Hexo</a>
   </div>
 
         <div class="alignright">
@@ -159,6 +174,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2014/08/30/androidstudio_ndk/">使用 Android Studio 进行 NDK 开发</a>
+      </li>
+    
+      <li>
+        <a href="/2014/08/30/androidstudio_so/">Android Studio 添加 lib*.so 文件</a>
+      </li>
+    
+      <li>
         <a href="/2014/08/30/github-gist/">Github·Gist使用攻略</a>
       </li>
     
@@ -178,6 +201,10 @@
         <a href="/2014/08/28/Java-单例模式/">Java 单例模式</a>
       </li>
     
+      <li>
+        <a href="/2014/08/28/AsyncTask-的使用/">AsyncTask 的使用</a>
+      </li>
+    
   </ul>
 </div>
 
@@ -187,7 +214,7 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Android/">Android</a><small>1</small></li>
+    <li><a href="/categories/Android/">Android</a><small>3</small></li>
   
     <li><a href="/categories/Hexo/">Hexo</a><small>2</small></li>
   
@@ -203,7 +230,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Android/" style="font-size: 15.00px;">Android</a><a href="/tags/Gist/" style="font-size: 15.00px;">Gist</a><a href="/tags/Github/" style="font-size: 15.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/tags/Hexo-Github/" style="font-size: 10.00px;">Hexo Github</a><a href="/tags/Hexo,-Github/" style="font-size: 10.00px;">Hexo, Github</a><a href="/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/tags/Sublime-Text/" style="font-size: 15.00px;">Sublime Text</a>
+    <a href="/tags/Android/" style="font-size: 20.00px;">Android</a><a href="/tags/Android-Studio/" style="font-size: 15.00px;">Android Studio</a><a href="/tags/Gist/" style="font-size: 10.00px;">Gist</a><a href="/tags/Github/" style="font-size: 10.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 15.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/Sublime-Text/" style="font-size: 10.00px;">Sublime Text</a>
   </div>
 </div>
 
