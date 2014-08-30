@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>第 2 页 | 归档 | Ruikye</title>
+  <title>第 2 页 | Java | Ruikye</title>
   <meta name="author" content="零雨の夜">
   
   
@@ -52,7 +52,7 @@
 </div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">归档</h2>
+<h2 class="archive-title tag">Java</h2>
 
 
   
@@ -63,11 +63,11 @@
       
       
         <div class="icon"></div>
-        <time datetime="2014-08-30T08:55:46.000Z"><a href="/2014/08/30/androidstudio_ndk/">8月 30 2014</a></time>
+        <time datetime="2014-08-28T14:55:07.000Z"><a href="/2014/08/28/Java-单例模式/">8月 28 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/30/androidstudio_ndk/">使用 Android Studio 进行 NDK 开发</a></h1>
+    <h1 class="title"><a href="/2014/08/28/Java-单例模式/">Java 单例模式</a></h1>
   
 
 
@@ -75,55 +75,40 @@
     <div class="entry">
       
         
-        <p>Android Studio 中添加已编译的 *.so 在 <em><a href="../androidstudio\_so">Android Studio 添加 lib*.so 文件</a></em> 中进行了介绍。这篇文章介绍如何直接在 Android Studio 中编写 NDK 代码并在打包 APK 时自动编译。</p>
-<p>在 Android Studio 中开 NDK 主要做三件事：</p>
-<blockquote>
-<ol>
-<li>在 <em>local.properties</em> 配置 ndk.dir</li>
-<li>在 <em>build.gradle</em> 中配置 NDK 模块，即 C++ 工程</li>
-<li>添加 C++ 代码文件到指定的目录，如：<em>\<module\> / [app] / [src] / [main] / [jni]</module\></em></li>
-<li>(可选)多同平台(<em>不同的CPU架构</em>)编译</li>
+        <ol>
+<li>私有化构造函数（饿汉模式）：    </li>
 </ol>
-</blockquote>
-<h2 id="1-_在_local-properties_文件中配置_ndk-dir">1. 在 <em>local.properties</em> 文件中配置 ndk.dir</h2>
-<p>使用 Android Studio 建立的项目会在项目的根目录生成名称为 <em>local.properties</em> 文件。  </p>
-<p>配置代码：</p>
-<figure class="highlight java"><pre><div class="line">sdk.dir=/Users/shanee/Development/Android/sdk</div><div class="line">ndk.dir=/Users/shanee/Development/ndk</div></pre></figure>
+<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span> </span>{</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Singleton1 sIntance = <span class="keyword">new</span> Singleton1();</div><div class="line"> </div><div class="line">  <span class="keyword">private</span> <span class="title">Singleton1</span>(){</div><div class="line">   }</div><div class="line"> </div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span>(){</div><div class="line">      <span class="keyword">return</span> sIntance;</div><div class="line">   }</div><div class="line">}</div></pre></figure>
 
-<h2 id="2-_在_build-gradle_中配置_NDK_模块">2. 在 <em>build.gradle</em> 中配置 NDK 模块</h2>
-<p><em>build.gradle</em> 示例配置：</p>
-<figure class="highlight java"><pre><div class="line">android {</div><div class="line">    compileSdkVersion <span class="number">19</span></div><div class="line">    buildToolsVersion <span class="string">"20.0.0"</span></div><div class="line"></div><div class="line">    defaultConfig {</div><div class="line">        applicationId <span class="string">"com.example.ndksample"</span></div><div class="line">        minSdkVersion <span class="number">9</span></div><div class="line">        targetSdkVersion <span class="number">19</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line"></div><div class="line">        ndk {</div><div class="line">            moduleName <span class="string">"myEpicGameCode"</span> <span class="comment">// &lt;-- This is the name of my C++ module!</span></div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// ... more gradle stuff here ...</span></div><div class="line"></div><div class="line">} <span class="comment">// end of android section</span></div></pre></figure>
+<ol>
+<li>私有化构造函数，并提供静态获获取实例方法（懒汉模式）：</li>
+</ol>
+<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton sInstance;</div><div class="line"> </div><div class="line">    <span class="keyword">private</span> <span class="title">Singleton</span>() {</div><div class="line">     }</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>(){</div><div class="line">        <span class="keyword">if</span>(sInstance == <span class="keyword">null</span>){</div><div class="line">             sInstance = <span class="keyword">new</span> Singleton();</div><div class="line">         }</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> sInstance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
 
-<p>还可以在 <em>ndk</em> 块中指定一些编译参数、依赖库等：</p>
-<figure class="highlight java"><pre><div class="line">ndk {</div><div class="line">    moduleName <span class="string">"myEpicGameCode"</span></div><div class="line">    cFlags <span class="string">"-DANDROID_NDK -D_DEBUG DNULL=0"</span>   <span class="comment">// Define some macros</span></div><div class="line">    ldLibs <span class="string">"EGL"</span>, <span class="string">"GLESv3"</span>, <span class="string">"dl"</span>, <span class="string">"log"</span>       <span class="comment">// Link with these libraries!</span></div><div class="line">    stl <span class="string">"stlport_shared"</span>                      <span class="comment">// Use shared stlport library</span></div><div class="line">}</div></pre></figure>
-
-<h2 id="3-_添加_C/C++_代码到项目">3. 添加 C/C++ 代码到项目</h2>
-<p>默认的，C++ 代码必须添加在指定的目录：</p>
-<blockquote>
+<ol>
+<li><p>单元素 Enum 类型实现单列（强烈推荐）：</p>
+<p>参考：《Effective Java》, 推荐使用该方法，理由如下：</p>
 <ul>
-<li><em>[module_name]</em><ul>
-<li>············<em>[src]</em></li>
-<li>················<em>[main]</em></li>
-<li>····················<em>[jniLibs]</em> ———————- so 目录</li>
-<li>····················<em>[jni]</em> —————————- jni 代码目录</li>
+<li>绝对的局唯一，可以序列化</li>
+<li>绝对的预防反射攻击</li>
+<li>绝对的简洁</li>
 </ul>
 </li>
+</ol>
+<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton {</div><div class="line">    INSTANCE;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomthing</span>(){</div><div class="line">        Log.d(<span class="string">"Sigleton"</span> , <span class="string">"This is a single instace!"</span> );</div><div class="line">     }</div><div class="line">}</div></pre></figure>
+
+<ol>
+<li><p>利用 JVM 类加载机制（多线程）：  </p>
+<p>我们知道 JVM 加载类时只会加载一次，可以利用此特性实现单例。优点：</p>
+<ul>
+<li>可以多线程使用</li>
+<li>绝对唯一</li>
+<li>不调用 getInstance 不会实例化</li>
 </ul>
-</blockquote>
-<p>C/C++ 代码目录示例：</p>
-<p><img src="/img/jniPath.png" alt="jniPath">  </p>
-<p>完成以上的步骤，就可以编译了，如果 C/C++ 中代码有错误也会提示编译失败的哦。</p>
-<p>如果不想使用默认的 JNI 目录，可以在 <em>build.gradle</em> 中指定目录，在 <em>sourceSets.main</em> 块中添加脚本：</p>
-<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  sourceSets.main {</div><div class="line">      jni.srcDirs <span class="string">'src/main/source'</span></div><div class="line">  }</div><div class="line">}</div></pre></figure>
+</li>
+</ol>
+<figure class="highlight java"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>{</div><div class="line">     <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Holder</span> </span>{</div><div class="line">         <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">private</span> <span class="title">Singleton</span>(){</div><div class="line">     }</div><div class="line"> </div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() {</div><div class="line">         <span class="keyword">return</span> Holder. instance;</div><div class="line">     }</div><div class="line">}</div></pre></figure>
 
-<h2 id="4-_(可选)多同平（CPU架构）台编译">4. (可选)多同平（<em>CPU架构</em>）台编译</h2>
-<p>如果要针对不同的平台分别做优化配置，也可以通过修改 <em>build.gralde</em> 脚本实现，参考配置脚本：</p>
-<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  productFlavors {</div><div class="line">        x86 {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"x86"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        arm {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"armeabi-v7a"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        mips {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"mips"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">} <span class="comment">// android</span></div></pre></figure>
-
-<p>同样在 <em>ndk</em> 块中可以指定编译参数，依赖库等配置。</p>
-<blockquote>
-<p>这篇文章是从 Google+ 上的一篇帖子翻译过来的，没有示例项目的源码；原文地址：<em><a href="http://shaneenishry.com/blog/2014/08/17/ndk-with-android-studio/" target="_blank" rel="external">NDK With Android Studio</a></em>（需翻墙）.</p>
-</blockquote>
 
       
     </div>
@@ -131,13 +116,13 @@
       
   
   <div class="categories">
-    <a href="/categories/Android/">Android</a>
+    <a href="/categories/Java/">Java</a>
   </div>
 
       
   
   <div class="tags">
-    <a href="/tags/Android/">Android</a>, <a href="/tags/Android-Studio/">Android Studio</a>
+    <a href="/tags/Java/">Java</a>
   </div>
 
         <div class="alignright">
@@ -157,10 +142,8 @@
 
   <nav id="pagination">
   
-    <a href="/archives/" class="alignleft prev">上一页</a>
+    <a href="/tags/Java/" class="alignleft prev">上一页</a>
   
-  
-    <a href="/archives/page/3/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav>
