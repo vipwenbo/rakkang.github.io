@@ -228,7 +228,7 @@ article .gallery:hover .control {
 }
 article .gallery img {
   max-width: 360px;
-  width: auto;
+  width: 100%;
   height: auto;
   position: absolute;
   top: 0;
@@ -455,7 +455,7 @@ article .entry h6 {
 }
 article .entry img,
 article .entry video {
-  width: auto;
+  width: 100%;
   height: auto;
   max-width: 360px;
   border: 1px solid #e4e4e4;
