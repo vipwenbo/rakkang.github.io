@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-  <title>第 3 页 | 归档：2014 | Ruikye</title>
+  <title>所有文章 | Ruikye</title>
   <meta name="author" content="零雨の夜">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="所有文章"/>
   <meta property="og:site_name" content="Ruikye"/>
 
   
@@ -52,72 +52,143 @@
 </div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2014</h2>
+<h2 class="archive-title category">
+    所有文章</h2>
 
-
-  
+<div class="archive">
+    
     <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-30T09:21:00.000Z"><a href="/2014/08/30/java_random_serial/">14/8月/242</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/30/java_random_serial/">Java 随机序列算法</a></h1>
-  
-
-
-    </header>
-    <div class="entry">
-      
-        
-        <figure class="highlight java"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * 用0~n生成m个数的随机序列</div><div class="line"> *</div><div class="line"> *<span class="javadoctag"> @param</span> limit</div><div class="line"> *           - n-1</div><div class="line"> *<span class="javadoctag"> @param</span> need</div><div class="line"> *           - m</div><div class="line"> *<span class="javadoctag"> @return</span> 生成的随机序列</div><div class="line"> */</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] <span class="title">genRandomSerial</span>(<span class="keyword">int</span> limit, <span class="keyword">int</span> need) {</div><div class="line">    <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[limit];</div><div class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[need];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; limit; i++) {</div><div class="line">        temp[i] = i;</div><div class="line">    }</div><div class="line"> </div><div class="line">    <span class="keyword">int</span> w;</div><div class="line">    Random rand = <span class="keyword">new</span> Random();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; need; i++) {</div><div class="line">        w = rand.nextInt(limit - i) + i;</div><div class="line">        <span class="keyword">int</span> t = temp[i];</div><div class="line">        temp[i] = temp[w];</div><div class="line">        temp[w] = t;</div><div class="line">        result[i] = temp[i];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div></pre></figure>
-
-
-      
-    </div>
-    <footer>
-      
-  
-  <div class="categories">
-    <a href="/categories/Java/">Java</a>
-  </div>
-
-      
-  
-  <div class="tags">
-    <a href="/tags/Java/">Java</a>
-  </div>
-
-        <div class="alignright">
-          <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/31</p>
+            
+                <h4 class="title"><a href="/ 2014/08/31/github_domain/">Github 的域名绑定</a></h4>
+            
+            
+            
         </div>
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  
-
-  <nav id="pagination">
-  
-    <a href="/archives/2014/page/2/" class="alignleft prev">上一页</a><br/>
-  
-  
-    <a href="/archives/2014/page/4/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav>
-</div></div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/30</p>
+            
+                <h4 class="title"><a href="/ 2014/08/30/yanhuayilen/">《烟花易冷》故事</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/30</p>
+            
+                <h4 class="title"><a href="/ 2014/08/30/java_random_serial/">Java 随机序列算法</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/30</p>
+            
+                <h4 class="title"><a href="/ 2014/08/30/androidstudio_ndk/">使用 Android Studio 进行 NDK 开发</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/30</p>
+            
+                <h4 class="title"><a href="/ 2014/08/30/androidstudio_so/">Android Studio 添加 lib*.so 文件</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/30</p>
+            
+                <h4 class="title"><a href="/ 2014/08/30/github-gist/">Github·Gist使用攻略</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/30</p>
+            
+                <h4 class="title"><a href="/ 2014/08/30/SublimeText-Plugins/">Sublime Text 推荐插件</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/30</p>
+            
+                <h4 class="title"><a href="/ 2014/08/30/Hexo-搭建个人博客-·-进阶篇/">Hexo 搭建个人博客 · 进阶篇</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/29</p>
+            
+                <h4 class="title"><a href="/ 2014/08/29/Hexo-搭建个人博客-·-基础篇/">Hexo 搭建个人博客 · 基础篇</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/28</p>
+            
+                <h4 class="title"><a href="/ 2014/08/28/Java-单例模式/">Java 单例模式</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    
+    <article class="post">
+        <div class="post-content">
+            <header><div class="icon"></div></header>
+            <p>2014/08/28</p>
+            
+                <h4 class="title"><a href="/ 2014/08/28/AsyncTask-的使用/">AsyncTask 的使用</a></h4>
+            
+            
+            
+        </div>
+    </article>
+    </div></div></div>
     <aside id="sidebar" class="alignright">
   <div class="introduction">
     <div align="center">

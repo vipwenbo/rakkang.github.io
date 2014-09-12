@@ -4,7 +4,7 @@
   <subtitle><![CDATA[// ruikye's 个人博客]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.ruikye.com/"/>
-  <updated>2014-08-31T13:10:21.991Z</updated>
+  <updated>2014-09-12T11:10:04.573Z</updated>
   <id>http://www.ruikye.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://www.ruikye.com/2014/08/31/github_domain/"/>
     <id>http://www.ruikye.com/2014/08/31/github_domain/</id>
     <published>2014-08-31T01:05:28.000Z</published>
-    <updated>2014-08-31T02:10:14.000Z</updated>
+    <updated>2014-09-12T09:50:11.000Z</updated>
     <content type="html"><![CDATA[<p>Github 的 Pages 功能不但提供了用户免费搭建博客的功能，同时还提供了自定义的域名绑定；在 Github 上搭建了博客后，Github 会自动给每个网址分配一个二级域名，如：rakkang.github.io，二级域名的问题是太长，也不太容易记住。所以很多用户都会自己申请独立域名并与 Github 的博客绑定起来。</p>
 <h2 id="域名注册">域名注册</h2>
 <p>要绑定独立的域名，首先得注册自己域名，域名一般是收费的；如果网站服务器是在国内的话，域名还需要通过工信部的备案才能使用。推荐使用 <a href="http://dnspod.cn" target="_blank" rel="external">DNSPod</a> 注册域名，因为解析是免费的。</p>
