@@ -63,11 +63,11 @@
       
       
         <div class="icon"></div>
-        <time datetime="2014-08-30T08:55:46.000Z"><a href="/2014/08/30/androidstudio_ndk/">14/8月/242</a></time>
+        <time datetime="2014-09-15T03:22:42.000Z"><a href="/2014/09/15/androidpendingintent/">14/9月/258</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/30/androidstudio_ndk/">使用 Android Studio 进行 NDK 开发</a></h1>
+    <h1 class="title"><a href="/2014/09/15/androidpendingintent/">Android PendingIntent 的使用</a></h1>
   
 
 
@@ -75,55 +75,41 @@
     <div class="entry">
       
         
-        <p>Android Studio 中添加已编译的 *.so 在 <em><a href="../androidstudio_so">Android Studio 添加 lib*.so 文件</a></em> 中进行了介绍。这篇文章介绍如何直接在 Android Studio 中编写 NDK 代码并在打包 APK 时自动编译。</p>
-<p>在 Android Studio 中开 NDK 主要做三件事：</p>
-<blockquote>
-<ol>
-<li>在 <em>local.properties</em> 配置 ndk.dir</li>
-<li>在 <em>build.gradle</em> 中配置 NDK 模块，即 C++ 工程</li>
-<li>添加 C++ 代码文件到指定的目录，如：<em>\<module\> / [app] / [src] / [main] / [jni]</module\></em></li>
-<li>(可选)多同平台(<em>不同的CPU架构</em>)编译</li>
-</ol>
-</blockquote>
-<h2 id="1-_在_local-properties_文件中配置_ndk-dir">1. 在 <em>local.properties</em> 文件中配置 ndk.dir</h2>
-<p>使用 Android Studio 建立的项目会在项目的根目录生成名称为 <em>local.properties</em> 文件。  </p>
-<p>配置代码：</p>
-<figure class="highlight java"><pre><div class="line">sdk.dir=/Users/shanee/Development/Android/sdk</div><div class="line">ndk.dir=/Users/shanee/Development/ndk</div></pre></figure>
-
-<h2 id="2-_在_build-gradle_中配置_NDK_模块">2. 在 <em>build.gradle</em> 中配置 NDK 模块</h2>
-<p><em>build.gradle</em> 示例配置：</p>
-<figure class="highlight java"><pre><div class="line">android {</div><div class="line">    compileSdkVersion <span class="number">19</span></div><div class="line">    buildToolsVersion <span class="string">"20.0.0"</span></div><div class="line"></div><div class="line">    defaultConfig {</div><div class="line">        applicationId <span class="string">"com.example.ndksample"</span></div><div class="line">        minSdkVersion <span class="number">9</span></div><div class="line">        targetSdkVersion <span class="number">19</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line"></div><div class="line">        ndk {</div><div class="line">            moduleName <span class="string">"myEpicGameCode"</span> <span class="comment">// &lt;-- This is the name of my C++ module!</span></div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// ... more gradle stuff here ...</span></div><div class="line"></div><div class="line">} <span class="comment">// end of android section</span></div></pre></figure>
-
-<p>还可以在 <em>ndk</em> 块中指定一些编译参数、依赖库等：</p>
-<figure class="highlight java"><pre><div class="line">ndk {</div><div class="line">    moduleName <span class="string">"myEpicGameCode"</span></div><div class="line">    cFlags <span class="string">"-DANDROID_NDK -D_DEBUG DNULL=0"</span>   <span class="comment">// Define some macros</span></div><div class="line">    ldLibs <span class="string">"EGL"</span>, <span class="string">"GLESv3"</span>, <span class="string">"dl"</span>, <span class="string">"log"</span>       <span class="comment">// Link with these libraries!</span></div><div class="line">    stl <span class="string">"stlport_shared"</span>                      <span class="comment">// Use shared stlport library</span></div><div class="line">}</div></pre></figure>
-
-<h2 id="3-_添加_C/C++_代码到项目">3. 添加 C/C++ 代码到项目</h2>
-<p>默认的，C++ 代码必须添加在指定的目录：</p>
-<blockquote>
+        <p>PendingIntent 是 Android 提供的一种用于外部程序调起自身程序的能力，生命周期不与主程序相关。外部程序通过 PendingIntent 只能调用起三种组件：</p>
 <ul>
-<li><em>[module_name]</em><ul>
-<li>············<em>[src]</em></li>
-<li>················<em>[main]</em></li>
-<li>····················<em>[jniLibs]</em> ———————- so 目录</li>
-<li>····················<em>[jni]</em> —————————- jni 代码目录</li>
+<li><em>Activity</em></li>
+<li><em>Service</em></li>
+<li><em>Broadcast</em></li>
 </ul>
-</li>
+<p>PendingIntent 的使用场景有三个：</p>
+<ul>
+<li>使用 AlarmManager 设定闹钟</li>
+<li>在系统状态栏显示 Notification</li>
+<li>在桌面显示 Widget</li>
 </ul>
-</blockquote>
-<p>C/C++ 代码目录示例：</p>
-<p><img src="/img/jniPath.png" alt="jniPath">  </p>
-<p>完成以上的步骤，就可以编译了，如果 C/C++ 中代码有错误也会提示编译失败的哦。</p>
-<p>如果不想使用默认的 JNI 目录，可以在 <em>build.gradle</em> 中指定目录，在 <em>sourceSets.main</em> 块中添加脚本：</p>
-<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  sourceSets.main {</div><div class="line">      jni.srcDirs <span class="string">'src/main/source'</span></div><div class="line">  }</div><div class="line">}</div></pre></figure>
+<p>PendingIntent 也只能通过下列的静态方法获取：</p>
+<figure class="highlight java"><pre><div class="line"><span class="comment">// 获取 Broadcast 关联的 PendingIntent</span></div><div class="line">PendingIntent.getBroadcast(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</div><div class="line"></div><div class="line"><span class="comment">// 获取 Activity 关联的 PendingIntent</span></div><div class="line">PendingIntent.getActivity(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</div><div class="line">PendingIntent.getActivity(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags, Bundle options)</div><div class="line"></div><div class="line"><span class="comment">// 获取 Service 关联的 PendingIntent</span></div><div class="line">PendingIntent.getService(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</div></pre></figure>
 
-<h2 id="4-_(可选)多同平（CPU架构）台编译">4. (可选)多同平（<em>CPU架构</em>）台编译</h2>
-<p>如果要针对不同的平台分别做优化配置，也可以通过修改 <em>build.gralde</em> 脚本实现，参考配置脚本：</p>
-<figure class="highlight java"><pre><div class="line">android {</div><div class="line">  </div><div class="line">  <span class="comment">// .. android settings ..</span></div><div class="line"></div><div class="line">  productFlavors {</div><div class="line">        x86 {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"x86"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        arm {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"armeabi-v7a"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">        mips {</div><div class="line">            ndk {</div><div class="line">                abiFilter <span class="string">"mips"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">} <span class="comment">// android</span></div></pre></figure>
-
-<p>同样在 <em>ndk</em> 块中可以指定编译参数，依赖库等配置。</p>
+<p>对于 PendingIntent，官方的描述是：</p>
 <blockquote>
-<p>这篇文章是从 Google+ 上的一篇帖子翻译过来的，没有示例项目的源码；原文地址：<em><a href="http://shaneenishry.com/blog/2014/08/17/ndk-with-android-studio/" target="_blank" rel="external">NDK With Android Studio</a></em>（需翻墙）.</p>
+<p>A PendingIntent itself is simply a reference to a token maintained by the system describing the original data used to retrieve it. This means that, even if its owning application’s process is killed, the PendingIntent itself will remain usable from other processes that have been given it. If the creating application later re-retrieves the same kind of PendingIntent (same operation, same Intent action, data, categories, and components, and same flags), it will receive a PendingIntent representing the same token if that is still valid, and can thus call cancel() to remove it.</p>
 </blockquote>
+<p>PendingIntent 是系统对于待处理数据的一个引用，称之为：token；当主程序被 Killed 时，token 还是会继续存在的，可以继续供其他进程使用。如果要取消 PendingIntent，需要调用 PendingIntent 的 cancel 方法。</p>
+<p>对于 PendingIntent 容易误解的一点是：<br><code>如果创建了很多 PendingIntent，只要 extra 中的数据不同的话，以为就是两个不同的 PendingIntent</code> 这种理解是错误的！！</p>
+<p>正确区分不同 PendingIntent 有两种方法：</p>
+<ul>
+<li>PendingIntent.getXXX(…) 方法中的 requestCode 不同</li>
+<li>通过 <code>Intent.filterEquals</code> 测试时不相等</li>
+</ul>
+<p>关于 PendingIntent.getXXX(…) 方法中第四个参数 <code>flags</code>，在 PendingIntent 定义了四个比较常用的 FLAG：</p>
+<figure class="highlight java"><pre><div class="line"><span class="comment">//如果新请求的 PendingIntent 发现已经存在时，取消已存在的，用新的 PendingIntent 替换</span></div><div class="line"><span class="keyword">int</span> FLAG_CANCEL_CURRENT</div><div class="line"></div><div class="line"><span class="comment">//如果新请求的 PendingIntent 发现已经存在时，忽略新请求的，继续使用已存在的</span></div><div class="line"><span class="keyword">int</span> FLAG_NO_CREATE</div><div class="line"></div><div class="line"><span class="comment">//表示 PendingIntent 只能使用一次，如果已使用过，那么 getXXX(...) 将会返回 NULL</span></div><div class="line"><span class="keyword">int</span> FLAG_ONE_SHOT</div><div class="line"></div><div class="line"><span class="comment">//如果新请求的 PendingIntent 发现已经存在时, 如果 Intent 有字段改变了，这更新已存在的 PendingIntent</span></div><div class="line"><span class="keyword">int</span> FLAG_UPDATE_CURRENT</div></pre></figure>
+
+<p>除此之外，在官方的 doc 中还添加了一行注释：</p>
+<blockquote>
+<p><code>flags</code>: or any of the flags as supported by Intent.fillIn() to control which unspecified parts of the intent that can be supplied when the actual send happens.</p>
+</blockquote>
+<h2 id="参考">参考</h2>
+<p>【1】：<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank" rel="external">http://developer.android.com/reference/android/app/PendingIntent.html</a></p>
 
       
     </div>
@@ -137,7 +123,7 @@
       
   
   <div class="tags">
-    <a href="/tags/Android/">Android</a>, <a href="/tags/Android-Studio/">Android Studio</a>
+    <a href="/tags/Android/">Android</a>
   </div>
 
         <div class="alignright">
@@ -187,6 +173,10 @@
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2014/09/15/androidpendingintent/">Android PendingIntent 的使用</a>
+      </li>
     
       <li>
         <a href="/2014/08/31/github_domain/">Github 的域名绑定</a>
@@ -247,7 +237,7 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Android/">Android</a><small>3</small></li>
+    <li><a href="/categories/Android/">Android</a><small>4</small></li>
   
     <li><a href="/categories/Github/">Github</a><small>1</small></li>
   

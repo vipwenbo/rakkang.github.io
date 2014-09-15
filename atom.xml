@@ -4,7 +4,7 @@
   <subtitle><![CDATA[// ruikye's 个人博客]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.ruikye.com/"/>
-  <updated>2014-09-12T11:45:14.397Z</updated>
+  <updated>2014-09-15T08:16:53.799Z</updated>
   <id>http://www.ruikye.com/</id>
   
   <author>
@@ -13,6 +13,56 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Android PendingIntent 的使用]]></title>
+    <link href="http://www.ruikye.com/2014/09/15/androidpendingintent/"/>
+    <id>http://www.ruikye.com/2014/09/15/androidpendingintent/</id>
+    <published>2014-09-15T03:22:42.000Z</published>
+    <updated>2014-09-15T08:15:55.000Z</updated>
+    <content type="html"><![CDATA[<p>PendingIntent 是 Android 提供的一种用于外部程序调起自身程序的能力，生命周期不与主程序相关。外部程序通过 PendingIntent 只能调用起三种组件：</p>
+<ul>
+<li><em>Activity</em></li>
+<li><em>Service</em></li>
+<li><em>Broadcast</em></li>
+</ul>
+<p>PendingIntent 的使用场景有三个：</p>
+<ul>
+<li>使用 AlarmManager 设定闹钟</li>
+<li>在系统状态栏显示 Notification</li>
+<li>在桌面显示 Widget</li>
+</ul>
+<p>PendingIntent 也只能通过下列的静态方法获取：</p>
+<figure class="highlight java"><pre><div class="line"><span class="comment">// 获取 Broadcast 关联的 PendingIntent</span></div><div class="line">PendingIntent.getBroadcast(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</div><div class="line"></div><div class="line"><span class="comment">// 获取 Activity 关联的 PendingIntent</span></div><div class="line">PendingIntent.getActivity(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</div><div class="line">PendingIntent.getActivity(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags, Bundle options)</div><div class="line"></div><div class="line"><span class="comment">// 获取 Service 关联的 PendingIntent</span></div><div class="line">PendingIntent.getService(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</div></pre></figure>
+
+<p>对于 PendingIntent，官方的描述是：</p>
+<blockquote>
+<p>A PendingIntent itself is simply a reference to a token maintained by the system describing the original data used to retrieve it. This means that, even if its owning application’s process is killed, the PendingIntent itself will remain usable from other processes that have been given it. If the creating application later re-retrieves the same kind of PendingIntent (same operation, same Intent action, data, categories, and components, and same flags), it will receive a PendingIntent representing the same token if that is still valid, and can thus call cancel() to remove it.</p>
+</blockquote>
+<p>PendingIntent 是系统对于待处理数据的一个引用，称之为：token；当主程序被 Killed 时，token 还是会继续存在的，可以继续供其他进程使用。如果要取消 PendingIntent，需要调用 PendingIntent 的 cancel 方法。</p>
+<p>对于 PendingIntent 容易误解的一点是：<br><code>如果创建了很多 PendingIntent，只要 extra 中的数据不同的话，以为就是两个不同的 PendingIntent</code> 这种理解是错误的！！</p>
+<p>正确区分不同 PendingIntent 有两种方法：</p>
+<ul>
+<li>PendingIntent.getXXX(…) 方法中的 requestCode 不同</li>
+<li>通过 <code>Intent.filterEquals</code> 测试时不相等</li>
+</ul>
+<p>关于 PendingIntent.getXXX(…) 方法中第四个参数 <code>flags</code>，在 PendingIntent 定义了四个比较常用的 FLAG：</p>
+<figure class="highlight java"><pre><div class="line"><span class="comment">//如果新请求的 PendingIntent 发现已经存在时，取消已存在的，用新的 PendingIntent 替换</span></div><div class="line"><span class="keyword">int</span> FLAG_CANCEL_CURRENT</div><div class="line"></div><div class="line"><span class="comment">//如果新请求的 PendingIntent 发现已经存在时，忽略新请求的，继续使用已存在的</span></div><div class="line"><span class="keyword">int</span> FLAG_NO_CREATE</div><div class="line"></div><div class="line"><span class="comment">//表示 PendingIntent 只能使用一次，如果已使用过，那么 getXXX(...) 将会返回 NULL</span></div><div class="line"><span class="keyword">int</span> FLAG_ONE_SHOT</div><div class="line"></div><div class="line"><span class="comment">//如果新请求的 PendingIntent 发现已经存在时, 如果 Intent 有字段改变了，这更新已存在的 PendingIntent</span></div><div class="line"><span class="keyword">int</span> FLAG_UPDATE_CURRENT</div></pre></figure>
+
+<p>除此之外，在官方的 doc 中还添加了一行注释：</p>
+<blockquote>
+<p><code>flags</code>: or any of the flags as supported by Intent.fillIn() to control which unspecified parts of the intent that can be supplied when the actual send happens.</p>
+</blockquote>
+<h2 id="参考">参考</h2>
+<p>【1】：<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank" rel="external">http://developer.android.com/reference/android/app/PendingIntent.html</a></p>
+]]></content>
+    
+    
+      <category term="Android" scheme="http://www.ruikye.com/tags/Android/"/>
+    
+      <category term="Android" scheme="http://www.ruikye.com/categories/Android/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Github 的域名绑定]]></title>
