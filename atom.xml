@@ -4,7 +4,7 @@
   <subtitle><![CDATA[// ruikye's 个人博客]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.ruikye.com/"/>
-  <updated>2015-01-18T08:47:04.368Z</updated>
+  <updated>2015-01-18T09:08:09.719Z</updated>
   <id>http://www.ruikye.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://www.ruikye.com/2015/01/18/python-study/"/>
     <id>http://www.ruikye.com/2015/01/18/python-study/</id>
     <published>2015-01-18T08:25:08.000Z</published>
-    <updated>2015-01-18T08:40:32.000Z</updated>
+    <updated>2015-01-18T09:01:36.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_内置函数：">1. 内置函数：</h3>
 <ul>
 <li><p>dir(object)</p>
@@ -448,7 +448,7 @@
     <link href="http://www.ruikye.com/2014/08/30/yanhuayilen/"/>
     <id>http://www.ruikye.com/2014/08/30/yanhuayilen/</id>
     <published>2014-08-30T09:30:14.000Z</published>
-    <updated>2014-08-31T02:29:21.000Z</updated>
+    <updated>2015-01-18T09:01:44.000Z</updated>
     <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;记得以前看《我是歌手》的时候，听林志炫唱《烟花易冷》特别有感觉，觉得比周杰伦自己唱的的好太多了；那阵子还真是 “中毒” 很深啊，天天单曲循环。后来闲来无事，逛逛百度贴吧，偶然间发现了这篇故事，觉得不错就记录了下来，这几天搭建了博客，为了装点门面，所以贴了出来:</p>
 <blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;《烟花易冷》的故事发生于南北朝时期，当时，以宋武帝刘裕为首的南朝宋，以及道武帝拓跋珪为首的北魏，那是中国历史上一段分裂的时期。公元 420年开始，南北朝之间因势力扩张以及疆土兼并，战争不断，其间南朝负多胜少。公元 422年，宋武帝刘裕病逝，北魏明元帝拓跋嗣大举攻宋，先后攻取金塘（洛阳）、虎牢、滑台。 430年，宋文帝刘义隆收复黄河以南失地，迫使魏军主动撤退，宋相继占领滑台、洛阳、虎牢。同年，北魏全线反击，连克金塘、洛阳、虎牢、滑台。</p>
@@ -474,7 +474,7 @@
     <link href="http://www.ruikye.com/2014/08/30/java_random_serial/"/>
     <id>http://www.ruikye.com/2014/08/30/java_random_serial/</id>
     <published>2014-08-30T09:21:00.000Z</published>
-    <updated>2014-08-30T09:21:46.000Z</updated>
+    <updated>2015-01-18T09:01:32.000Z</updated>
     <content type="html"><![CDATA[<figure class="highlight java"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * 用0~n生成m个数的随机序列</div><div class="line"> *</div><div class="line"> *<span class="javadoctag"> @param</span> limit</div><div class="line"> *           - n-1</div><div class="line"> *<span class="javadoctag"> @param</span> need</div><div class="line"> *           - m</div><div class="line"> *<span class="javadoctag"> @return</span> 生成的随机序列</div><div class="line"> */</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] <span class="title">genRandomSerial</span>(<span class="keyword">int</span> limit, <span class="keyword">int</span> need) {</div><div class="line">    <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[limit];</div><div class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[need];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; limit; i++) {</div><div class="line">        temp[i] = i;</div><div class="line">    }</div><div class="line"> </div><div class="line">    <span class="keyword">int</span> w;</div><div class="line">    Random rand = <span class="keyword">new</span> Random();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; need; i++) {</div><div class="line">        w = rand.nextInt(limit - i) + i;</div><div class="line">        <span class="keyword">int</span> t = temp[i];</div><div class="line">        temp[i] = temp[w];</div><div class="line">        temp[w] = t;</div><div class="line">        result[i] = temp[i];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div></pre></figure>
 
 ]]></content>
@@ -557,7 +557,7 @@
     <link href="http://www.ruikye.com/2014/08/30/androidstudio_so/"/>
     <id>http://www.ruikye.com/2014/08/30/androidstudio_so/</id>
     <published>2014-08-30T08:43:47.000Z</published>
-    <updated>2014-08-30T08:48:53.000Z</updated>
+    <updated>2015-01-18T08:56:44.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>Android Studio 是一个全新的 Android 开发环境，基于IntelliJ IDEA. 类似 Eclipse ADT，Android Studio 提供了集成的 Android 开发工具用于开发和调试，在IDEA的基础上，Android Studio 提供：  </p>
 <ol>
@@ -569,7 +569,7 @@
 <li>功能强大的布局编辑器，可以让你拖拉 UI 控件并进行效果预览<br>——————— 百度百科</li>
 </ol>
 </blockquote>
-<p>Android Stuido 是Google发布的全新的 Android 开发工具，采用了新的 Gradle 构建系统，已 Eclipse 或者 Ant 方式的构建系统有很大区别。为了方便使用 Eclipse 的开发者迁移项目到 Android Studio，在最新的 Eclipse ADT 插件中提供了导出项目为 Gradle 的工具，使用方法：</p>
+<p>Android Stuido 是Google发布的全新的 Android 开发工具，采用了新的 Gradle 构建系统，与 Eclipse 或者 Ant 方式的构建系统有很大区别。为了方便使用 Eclipse 的开发者迁移项目到 Android Studio，在最新的 Eclipse ADT 插件中提供了导出项目为 Gradle 的工具，使用方法：</p>
 <blockquote>
 <p>打开菜单: <code>File</code> -&gt; <code>Export</code>  </p>
 <p><img src="/img/export.png" alt="export">  </p>
@@ -714,7 +714,7 @@
     <link href="http://www.ruikye.com/2014/08/30/SublimeText-Plugins/"/>
     <id>http://www.ruikye.com/2014/08/30/SublimeText-Plugins/</id>
     <published>2014-08-30T08:14:20.000Z</published>
-    <updated>2014-08-30T09:17:33.000Z</updated>
+    <updated>2015-01-18T09:01:40.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用），也是HTML和散文先进的文本编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。—- 百度百科</p>
 </blockquote>
@@ -723,7 +723,7 @@
 <p>安装方法，打开 Sublime Text，按快捷键 <code>CTRL+反引号</code> 调出控制台(<em>Console</em>), 输入以下代码 ：</p>
 <pre><code>Sublime <span class="built_in">Text</span> <span class="number">2</span> 安装代码：
 </code></pre><blockquote>
-<p>mport urllib2,os; pf=’Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), ‘wb’ ).write( urllib2.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ +pf.replace( ‘ ‘,’%20’ )).read()); print( ‘Please restart Sublime Text to finish installation’)</p>
+<p>import urllib2,os; pf=’Package Control.sublime-package’; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), ‘wb’ ).write( urllib2.urlopen( ‘<a href="http://sublime.wbond.net/" target="_blank" rel="external">http://sublime.wbond.net/</a>‘ +pf.replace( ‘ ‘,’%20’ )).read()); print( ‘Please restart Sublime Text to finish installation’)</p>
 </blockquote>
 <pre><code>Sublime <span class="built_in">Text</span> <span class="number">3</span> 安装代码：
 </code></pre><blockquote>
@@ -779,7 +779,7 @@
     <link href="http://www.ruikye.com/2014/08/30/Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%C2%B7-%E8%BF%9B%E9%98%B6%E7%AF%87/"/>
     <id>http://www.ruikye.com/2014/08/30/Hexo-搭建个人博客-·-进阶篇/</id>
     <published>2014-08-30T05:07:26.000Z</published>
-    <updated>2014-08-30T09:13:01.000Z</updated>
+    <updated>2015-01-18T09:01:24.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Hexo_配置文件__config-yml">Hexo 配置文件 <em>_config.yml</em></h2>
 <p>Hexo 的各种通用的配置都是在博客根目录行下的 <em>_config.yml</em> 文件中设置的。下面介绍一些常用的配置项：</p>
 <figure class="highlight sh"><pre><div class="line"><span class="comment"># Site 基本信息</span></div><div class="line">title: Ruikye                      <span class="comment"># 博客标题，如左上角显示</span></div><div class="line">subtitle: ruikye 的个人博客         <span class="comment"># 博客副标题</span></div><div class="line">description: 移动开发技术分享博客     <span class="comment"># 用于搜索引擎搜索到的描述信息</span></div><div class="line">author: 零雨の夜                    <span class="comment"># 博客署名，一般会现在在博客的最下方，rg: &copy;2014 零雨の夜</span></div><div class="line">email: xxx@xxx.com                <span class="comment"># 可不填</span></div><div class="line">language: zh-CN                   <span class="comment"># 让博客支持中文</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Writing</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">highlight:              <span class="comment"># 代码高亮</span></div><div class="line">  enable: <span class="literal">true</span>          <span class="comment"># 开启代码高亮</span></div><div class="line">  line_number: <span class="literal">false</span>    <span class="comment"># 是否显示行号</span></div><div class="line">  tab_replace: <span class="literal">true</span>     <span class="comment"># 是否替换 tab 为空格</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Pagination</span></div><div class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></div><div class="line">per_page: <span class="number">1</span>             <span class="comment"># 文章分页时，每页最多显示文章数，eg: 我的博客在首页和归档页最多只显示一篇文章</span></div><div class="line">pagination_dir: page    <span class="comment"># 分页目录</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Extensions</span></div><div class="line"><span class="comment">## Plugins: https://github.com/hexojs/hexo/wiki/Plugins</span></div><div class="line"><span class="comment">## Themes: https://github.com/hexojs/hexo/wiki/Themes</span></div><div class="line">theme: bs-light         <span class="comment"># 这里配置博客的主题风格，主题安装在 themes/ 目录下，这里的值就是主题的文件夹名字 </span></div><div class="line">exclude_generator:</div><div class="line"></div><div class="line">plugins:</div><div class="line">- hexo-generator-feed   <span class="comment"># 安装、启用的插件，这里是启动 RSS 订阅的插件</span></div><div class="line"></div><div class="line"><span class="comment"># Deployment</span></div><div class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: github                                                  <span class="comment"># 博客托管服务器类型</span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git  <span class="comment"># 托管服务器地址</span></div><div class="line">  brach: master                                                 <span class="comment"># 博客使用的代码分支</span></div></pre></figure>
@@ -843,7 +843,7 @@
     <link href="http://www.ruikye.com/2014/08/29/Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-%C2%B7-%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     <id>http://www.ruikye.com/2014/08/29/Hexo-搭建个人博客-·-基础篇/</id>
     <published>2014-08-29T14:35:13.000Z</published>
-    <updated>2014-08-30T09:17:19.000Z</updated>
+    <updated>2015-01-18T09:06:51.000Z</updated>
     <content type="html"><![CDATA[<p>最近 Github 在 IT 界是火得一踏糊涂，作为一个程序猿没听过 Github 真觉得 Out 了。本身 Github 是一个基于 git 版本控制系统的托管仓库，程序员可以在 Github 上托管代码，设计师可以在 Github 上协同创作等等各种方便。最近 Apple 为 IOS 发布了新的编程语言，北邮的几个学生就在 Github 上发起了协同翻译《The Swift Programming Language》英文版，项目地址：<a href="https://github.com/numbbbbb/the-swift-programming-language-in-chinese" target="_blank" rel="external">中文版 Apple 官方 Swift 教程</a>。</p>
 <p>同时，Github 为了更好的程序员介绍自己的项目，提供了 Pages 功能，Pages 功能就是为每个项目提供一种静态网页的描述方式，很多网友就利用 Pages 功能搭建了自己的个人博客，这篇文章就是介绍如何使用 Hexo 快速的在 Github 上搭建自己的个人博客。</p>
 <blockquote>
@@ -908,13 +908,13 @@
 <figure class="highlight shell"><pre><div class="line">$ <span class="built_in">cd</span> ~/MyBlog</div></pre></figure>
 
 <p>生成博客的静态网页，并部署到 Github:</p>
-<figure class="highlight"><pre><div class="line">$ hexo generate <span class="comment">// 生成静态网页</span></div></pre></figure>
+<figure class="highlight shell"><pre><div class="line">$ hexo generate <span class="comment">// 生成静态网页</span></div></pre></figure>
 
 <p>在部署之前，还要配置下 Hexo 的服务器地址，打开 <code>~/MyBlog/_config.yml</code> 在文件的最后面，找到并编辑以下的内容：</p>
-<figure class="highlight"><pre><div class="line"><span class="preprocessor"># Deployment</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="title">deploy</span>:</div><div class="line">  <span class="typedef"><span class="keyword">type</span>: github    <span class="comment">------&gt; 直接填写 github</span></span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git   <span class="comment">-----&gt; Github 的仓库地址</span></div><div class="line">  brach: master</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="preprocessor"># Deployment</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="title">deploy</span>:</div><div class="line">  <span class="typedef"><span class="keyword">type</span>: github    <span class="comment">------&gt; 直接填写 github</span></span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git   <span class="comment">-----&gt; Github 的仓库地址</span></div><div class="line">  brach: master</div></pre></figure>
 
 <p>保存，在终端运行以下部署命令：</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></figure>
 
 <blockquote>
 <p>Hexo 提供了简化的命令：</p>
@@ -922,13 +922,13 @@
 <figure class="highlight shell"><pre><div class="line">hexo g = hexo generate  <span class="comment">// 生成</span></div><div class="line">hexo d = hexo deploy    <span class="comment">// 部署</span></div><div class="line">hexo s = hexo <span class="keyword">server</span>    <span class="comment">// 运行服务器</span></div></pre></figure>
 
 <p>首次运行部署命令可能会报以下的错误：</p>
-<figure class="highlight"><pre><div class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/kang/temp/.deploy/.git/</div><div class="line"></div><div class="line">*** Please tell <span class="keyword">me</span> who you are.</div><div class="line"></div><div class="line">Run</div><div class="line"></div><div class="line">  git config --<span class="keyword">global</span> user.email <span class="string">"you@example.com"</span></div><div class="line">  git config --<span class="keyword">global</span> user.name <span class="string">"Your Name"</span></div><div class="line"></div><div class="line"><span class="keyword">to</span> <span class="keyword">set</span> your account<span class="comment">'s default identity.</span></div><div class="line">Omit --<span class="keyword">global</span> <span class="keyword">to</span> <span class="keyword">set</span> the identity only <span class="keyword">in</span> this repository.</div><div class="line"></div><div class="line">fatal: unable <span class="keyword">to</span> <span class="keyword">auto</span>-detect email address (got <span class="comment">'kang@ruikye.(none)')</span></div></pre></figure>
+<figure class="highlight"><pre><div class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/kang/temp/.deploy/.git/</div><div class="line">*** Please tell <span class="keyword">me</span> who you are.</div><div class="line"></div><div class="line">Run</div><div class="line"></div><div class="line">  git config --<span class="keyword">global</span> user.email <span class="string">"you@example.com"</span></div><div class="line">  git config --<span class="keyword">global</span> user.name <span class="string">"Your Name"</span></div><div class="line"></div><div class="line"><span class="keyword">to</span> <span class="keyword">set</span> your account<span class="comment">'s default identity.</span></div><div class="line">Omit --<span class="keyword">global</span> <span class="keyword">to</span> <span class="keyword">set</span> the identity only <span class="keyword">in</span> this repository.</div><div class="line"></div><div class="line">fatal: unable <span class="keyword">to</span> <span class="keyword">auto</span>-detect email address (got <span class="comment">'kang@ruikye.(none)')</span></div></pre></figure>
 
 <p>这是因为没配置 Git 的提交用户信息，可以通过下面的命令配置：</p>
-<figure class="highlight"><pre><div class="line">$ git config user<span class="class">.email</span> <span class="attr_selector">[你的邮箱]</span></div><div class="line">$ git config user<span class="class">.name</span> <span class="attr_selector">[提交用户名]</span> <span class="comment">// 名字可以随便写</span></div></pre></figure>
+<figure class="highlight shell"><pre><div class="line">$ git config user<span class="class">.email</span> <span class="attr_selector">[你的邮箱]</span></div><div class="line">$ git config user<span class="class">.name</span> <span class="attr_selector">[提交用户名]</span> <span class="comment">// 名字可以随便写</span></div></pre></figure>
 
 <p>配置后在运行部署命令，成功后会出现以下的信息：</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">To</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git</span></div><div class="line">   a796df0..<span class="number">4</span>d4cb79  master -&gt; master</div><div class="line">Branch master <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch master <span class="keyword">from</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git.</span></div><div class="line">[info] Deploy done: github</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="keyword">To</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git</span></div><div class="line">   a796df0..<span class="number">4</span>d4cb79  master -&gt; master</div><div class="line">Branch master <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch master <span class="keyword">from</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git.</span></div><div class="line">[info] Deploy done: github</div></pre></figure>
 
 <p>部署后，在浏览器地址输入：<code>USERNAME</code>.github.io <em>(eg: <a href="http://rakkang.github.io" target="_blank" rel="external">rakkang.github.io</a>)</em> 就可以打开线上的博客了，至此部署完成。</p>
 <h2 id="写博客、发布文章">写博客、发布文章</h2>
@@ -962,7 +962,7 @@
     <link href="http://www.ruikye.com/2014/08/28/Java-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
     <id>http://www.ruikye.com/2014/08/28/Java-单例模式/</id>
     <published>2014-08-28T14:55:07.000Z</published>
-    <updated>2014-08-30T09:17:29.000Z</updated>
+    <updated>2015-01-18T09:01:28.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li>私有化构造函数（饿汉模式）：    </li>
 </ol>

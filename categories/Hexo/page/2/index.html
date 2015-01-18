@@ -139,13 +139,13 @@
 <figure class="highlight shell"><pre><div class="line">$ <span class="built_in">cd</span> ~/MyBlog</div></pre></figure>
 
 <p>生成博客的静态网页，并部署到 Github:</p>
-<figure class="highlight"><pre><div class="line">$ hexo generate <span class="comment">// 生成静态网页</span></div></pre></figure>
+<figure class="highlight shell"><pre><div class="line">$ hexo generate <span class="comment">// 生成静态网页</span></div></pre></figure>
 
 <p>在部署之前，还要配置下 Hexo 的服务器地址，打开 <code>~/MyBlog/_config.yml</code> 在文件的最后面，找到并编辑以下的内容：</p>
-<figure class="highlight"><pre><div class="line"><span class="preprocessor"># Deployment</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="title">deploy</span>:</div><div class="line">  <span class="typedef"><span class="keyword">type</span>: github    <span class="comment">------&gt; 直接填写 github</span></span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git   <span class="comment">-----&gt; Github 的仓库地址</span></div><div class="line">  brach: master</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="preprocessor"># Deployment</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="title">deploy</span>:</div><div class="line">  <span class="typedef"><span class="keyword">type</span>: github    <span class="comment">------&gt; 直接填写 github</span></span></div><div class="line">  repository: https://github.com/rakkang/rakkang.github.io.git   <span class="comment">-----&gt; Github 的仓库地址</span></div><div class="line">  brach: master</div></pre></figure>
 
 <p>保存，在终端运行以下部署命令：</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></figure>
 
 <blockquote>
 <p>Hexo 提供了简化的命令：</p>
@@ -153,13 +153,13 @@
 <figure class="highlight shell"><pre><div class="line">hexo g = hexo generate  <span class="comment">// 生成</span></div><div class="line">hexo d = hexo deploy    <span class="comment">// 部署</span></div><div class="line">hexo s = hexo <span class="keyword">server</span>    <span class="comment">// 运行服务器</span></div></pre></figure>
 
 <p>首次运行部署命令可能会报以下的错误：</p>
-<figure class="highlight"><pre><div class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/kang/temp/.deploy/.git/</div><div class="line"></div><div class="line">*** Please tell <span class="keyword">me</span> who you are.</div><div class="line"></div><div class="line">Run</div><div class="line"></div><div class="line">  git config --<span class="keyword">global</span> user.email <span class="string">"you@example.com"</span></div><div class="line">  git config --<span class="keyword">global</span> user.name <span class="string">"Your Name"</span></div><div class="line"></div><div class="line"><span class="keyword">to</span> <span class="keyword">set</span> your account<span class="comment">'s default identity.</span></div><div class="line">Omit --<span class="keyword">global</span> <span class="keyword">to</span> <span class="keyword">set</span> the identity only <span class="keyword">in</span> this repository.</div><div class="line"></div><div class="line">fatal: unable <span class="keyword">to</span> <span class="keyword">auto</span>-detect email address (got <span class="comment">'kang@ruikye.(none)')</span></div></pre></figure>
+<figure class="highlight"><pre><div class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/kang/temp/.deploy/.git/</div><div class="line">*** Please tell <span class="keyword">me</span> who you are.</div><div class="line"></div><div class="line">Run</div><div class="line"></div><div class="line">  git config --<span class="keyword">global</span> user.email <span class="string">"you@example.com"</span></div><div class="line">  git config --<span class="keyword">global</span> user.name <span class="string">"Your Name"</span></div><div class="line"></div><div class="line"><span class="keyword">to</span> <span class="keyword">set</span> your account<span class="comment">'s default identity.</span></div><div class="line">Omit --<span class="keyword">global</span> <span class="keyword">to</span> <span class="keyword">set</span> the identity only <span class="keyword">in</span> this repository.</div><div class="line"></div><div class="line">fatal: unable <span class="keyword">to</span> <span class="keyword">auto</span>-detect email address (got <span class="comment">'kang@ruikye.(none)')</span></div></pre></figure>
 
 <p>这是因为没配置 Git 的提交用户信息，可以通过下面的命令配置：</p>
-<figure class="highlight"><pre><div class="line">$ git config user<span class="class">.email</span> <span class="attr_selector">[你的邮箱]</span></div><div class="line">$ git config user<span class="class">.name</span> <span class="attr_selector">[提交用户名]</span> <span class="comment">// 名字可以随便写</span></div></pre></figure>
+<figure class="highlight shell"><pre><div class="line">$ git config user<span class="class">.email</span> <span class="attr_selector">[你的邮箱]</span></div><div class="line">$ git config user<span class="class">.name</span> <span class="attr_selector">[提交用户名]</span> <span class="comment">// 名字可以随便写</span></div></pre></figure>
 
 <p>配置后在运行部署命令，成功后会出现以下的信息：</p>
-<figure class="highlight"><pre><div class="line"><span class="keyword">To</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git</span></div><div class="line">   a796df0..<span class="number">4</span>d4cb79  master -&gt; master</div><div class="line">Branch master <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch master <span class="keyword">from</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git.</span></div><div class="line">[info] Deploy done: github</div></pre></figure>
+<figure class="highlight shell"><pre><div class="line"><span class="keyword">To</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git</span></div><div class="line">   a796df0..<span class="number">4</span>d4cb79  master -&gt; master</div><div class="line">Branch master <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch master <span class="keyword">from</span> https:<span class="comment">//github.com/rakkang/rakkang.github.io.git.</span></div><div class="line">[info] Deploy done: github</div></pre></figure>
 
 <p>部署后，在浏览器地址输入：<code>USERNAME</code>.github.io <em>(eg: <a href="http://rakkang.github.io" target="_blank" rel="external">rakkang.github.io</a>)</em> 就可以打开线上的博客了，至此部署完成。</p>
 <h2 id="写博客、发布文章">写博客、发布文章</h2>
@@ -322,8 +322,6 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/Tesseract/">Tesseract</a><small>0</small></li>
-  
     <li><a href="/categories/文字/">文字</a><small>1</small></li>
   
   </ul>
@@ -334,7 +332,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Android/" style="font-size: 20.00px;">Android</a><a href="/tags/Android-Studio/" style="font-size: 16.67px;">Android Studio</a><a href="/tags/Gist/" style="font-size: 13.33px;">Gist</a><a href="/tags/Github/" style="font-size: 16.67px;">Github</a><a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a><a href="/tags/Java/" style="font-size: 16.67px;">Java</a><a href="/tags/OCR/" style="font-size: 10.00px;">OCR</a><a href="/tags/Python/" style="font-size: 13.33px;">Python</a><a href="/tags/Sublime-Text/" style="font-size: 13.33px;">Sublime Text</a><a href="/tags/Tesseract/" style="font-size: 10.00px;">Tesseract</a><a href="/tags/烟花易冷/" style="font-size: 13.33px;">烟花易冷</a>
+    <a href="/tags/Android/" style="font-size: 20.00px;">Android</a><a href="/tags/Android-Studio/" style="font-size: 15.00px;">Android Studio</a><a href="/tags/Gist/" style="font-size: 10.00px;">Gist</a><a href="/tags/Github/" style="font-size: 15.00px;">Github</a><a href="/tags/Hexo/" style="font-size: 15.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 15.00px;">Java</a><a href="/tags/Python/" style="font-size: 10.00px;">Python</a><a href="/tags/Sublime-Text/" style="font-size: 10.00px;">Sublime Text</a><a href="/tags/烟花易冷/" style="font-size: 10.00px;">烟花易冷</a>
   </div>
 </div>
 
